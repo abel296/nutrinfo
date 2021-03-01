@@ -6,7 +6,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        trim: true
+        trim: true,
     },
     password: {
         type: String,
@@ -17,7 +17,6 @@ const userSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Recipe"
     }],
-    rating: [Number]
 },{
     timestamps:true
 })

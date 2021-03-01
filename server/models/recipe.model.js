@@ -6,11 +6,13 @@ const recipeSchema = new Schema({
         type: String,
         required: true
     },
-    image: String,
+    image: [{
+        url: String,
+        alt: String
+    }],
     ingredients: {
         type: [{
-            name: [
-                String],
+            name: String,
             quantity: Number
         }],
         required: true
@@ -24,17 +26,25 @@ const recipeSchema = new Schema({
         number: Number,
         step: String
     }],
+    time: Number,
+    servings: Number,
     diet: {
         type: String,
         enum: ["high-protein", "low-carb", "low-fat", "balanced", "high-fiber", "low-sodium"]
     },
+    rating: [{
+        owner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        qualification: Number
+    }],
     labels: [String],
-    ranking: [Number],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    comment: [{
+    comments: [{
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
@@ -44,6 +54,7 @@ const recipeSchema = new Schema({
 }, {
     timestamps: true
 })
+
 
 const Recipe = mongoose.model('Recipe', recipeSchema)
 
