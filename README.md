@@ -13,6 +13,6 @@
 | /recipes/getRecipesByUser/:id  | GET  | Returns all recipes from a user  |
 | /recipes/createRecipe  | POST  | Creates recipe into the database |
 | /recipes/editRecipe/:id  | PUT  | Edits a recipe from the database  |
-| /recipes/deleteRecipe  | DELETE  | Removes a recipe from the database  |
+| /recipes/deleteRecipe/:id  | DELETE  | Removes a recipe from the database  |
 
 
