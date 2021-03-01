@@ -6,6 +6,7 @@
 | ------------- | ------------- | ------------- |
 | /auth/signup  | POST  | Creates a user into the database  |
 | /auth/login  | POST  | Log in a user  |
+| /auth/edit/:id  | PUT  | Edit in a user  |
 | /auth/logout  | POST  | Log out a user  |
 | /auth/loggedin  | GET  | Checks if a user is logged in and returns it  |
 | /recipes/getAllRecipes  | GET  | Returns all recipes in the database  |
