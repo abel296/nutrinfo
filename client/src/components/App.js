@@ -2,12 +2,19 @@
 import './App.css';
 
 import Routes from './routes/Routes'
+import Navigation from './layout/Navigation/Navigation'
 
 
 
 function App() {
   return (
-   <Routes />
+    <>
+      <Navigation />
+
+      <main>
+        <Routes />
+      </main>
+    </>
   );
 }
 
