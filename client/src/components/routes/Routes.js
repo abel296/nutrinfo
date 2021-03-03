@@ -14,7 +14,7 @@ const Routes = ({storeUser}) => {
         <Switch>
             <Route path="/" exact render={() => <Home />} />
             <Route path="/recipes" render={() => <Recipes />} />
-            <Route path="/recipe-details/:recipe_id" render={() => <RecipeDetails />} />
+            <Route path="/recipe-details/:recipe_id" render={(props) => <RecipeDetails {...props} />} />
             <Route path="/profile" render={() => <Profile />} />
             <Route path="/signup" render={() => <Signup />} />
             <Route path="/login" render={() => <Login />} />
