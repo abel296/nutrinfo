@@ -1,0 +1,39 @@
+.on-load {
+  opacity: 0;
+  animation: fade-in-up 1s forwards;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0;
+         transform: translateY(8px); }
+  to   { opacity: 1;
+         transform: translateY(0); }
+}
+
+
+.spinner {
+  pointer-events: none;
+  width: 32px;
+  height: 32px;
+  border: 2px solid transparent;
+  border-color: #f2f2f2;
+  border-top-color: rgb(107, 107, 107);
+  border-radius: 50%;
+  animation: spin 1s, colour-wheel 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes spin {
+  0%   { transform: rotateZ(0); }
+  100% { transform: rotateZ(360deg); }
+}
+
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}

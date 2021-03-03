@@ -16,11 +16,6 @@
     background-color: #343a40;
 }
 
-
-
-
-
-
 .btn {
     margin-top: 30px;
     font-size: 1.2em;
@@ -31,6 +26,10 @@
     background-color: black;
     transition: 0.5s ease;
     font-weight: 700;
+}
+
+.btn.btn-small {
+    font-size: 1em;
 }
 
 .btn.btn-white {
