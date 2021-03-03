@@ -1,5 +1,8 @@
 import { Component } from 'react'
 import RecipeService from '../../../service/recipes.service'
+import RecipesList from './RecipesList'
+
+import {Container} from 'react-bootstrap'
 
 class Recipes extends Component {
 
@@ -13,7 +16,6 @@ class Recipes extends Component {
     }
 
     componentDidMount() {
-        console.log(this.recipeService)
         this.loadRecipes()
     }
 
@@ -30,8 +32,14 @@ class Recipes extends Component {
 
         return(
             <>
-            <h1>Recipes</h1>
-                {this.state.recipes?.map(elm => <h1>{elm.title}</h1>)}
+                <Container>
+
+                    <h1>Recipes</h1>
+                    
+                    <RecipesList recipes={this.state.recipes} />
+                
+                </Container>
+            
             </>
         )
     }
