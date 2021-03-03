@@ -1,20 +1,17 @@
 .navigation-bar {
-    font-size: 1.2em;
-    padding: 18px;
+  font-size: 1.2em;
+  padding: 18px;
 }
 
-.navigation-bar div{
-    text-align: right;
+.navigation-bar div {
+  text-align: right;
 }
 
 .navbar-brand {
-    margin-right: 0;
-    font-size: 1.4em;
+  margin-right: 0;
+  font-size: 1.4em;
 }
 
 .dropdown-menu.show {
-    background-color: #343a40;
+  background-color: #343a40;
 }
-
-
-

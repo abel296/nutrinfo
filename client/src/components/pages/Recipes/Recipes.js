@@ -21,7 +21,7 @@ class Recipes extends Component {
 
         this.recipeService
             .getRecipes()
-            .then(response => console.log(response))
+            .then(response => this.setState({recipes: response.data}))
             .catch(err => console.log(err))
     }
 
@@ -31,9 +31,7 @@ class Recipes extends Component {
         return(
             <>
             <h1>Recipes</h1>
-            <li>
                 {this.state.recipes?.map(elm => <h1>{elm.title}</h1>)}
-            </li>
             </>
         )
     }

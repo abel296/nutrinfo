@@ -8,8 +8,9 @@ import Signup from '../pages/Signup/Signup'
 import Login from '../pages/Login/Login'
 
 
-const Routes = () => {
+const Routes = ({storeUser}) => {
     return (
+        <>
         <Switch>
             <Route path="/" exact render={() => <Home />} />
             <Route path="/recipes" render={() => <Recipes />} />
@@ -18,6 +19,7 @@ const Routes = () => {
             <Route path="/signup" render={() => <Signup />} />
             <Route path="/login" render={() => <Login />} />
         </Switch>
+        </>
     )
 }
 

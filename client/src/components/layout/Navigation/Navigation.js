@@ -1,11 +1,11 @@
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
-
+import "./Navigation.css"
 import { NavLink } from 'react-router-dom'
 
 const Navigation = () => {
 
     return (
-        <Navbar expand="lg" className='navigation-bar' bg="dark" variant="dark">
+        <Navbar expand="lg" className='navigation-bar' bg="dark" variant="dark" style={{marginBottom: 30}}>
             <NavLink to='/'>
                 <Navbar.Brand>Nutrinfo</Navbar.Brand>
             </NavLink>
