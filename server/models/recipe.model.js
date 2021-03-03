@@ -43,14 +43,7 @@ const recipeSchema = new Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
-    },
-    comments: [{
-        owner: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        },
-        text: String
-    }]
+    }
 }, {
     timestamps: true
 })
