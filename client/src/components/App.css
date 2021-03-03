@@ -23,10 +23,10 @@
 
 .btn {
     margin-top: 30px;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: white;
     border: 3px solid black;
-    padding: 15px 55px;
+    padding: 10px 40px;
     border-radius: 35px;
     background-color: black;
     transition: 0.5s ease;

@@ -17,18 +17,29 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
-            <section className='more-info'>
-                <Row>
-                    <Col className='community'>
-                        <h2>Check out all the recipes from our community</h2>
-                    </Col>
 
-                    <Col>
-                        <h2>Don't know what goes here yet</h2>
-                    </Col>
-
-                </Row>
-            </section>
+            <div>
+            <Row className='info-block'>
+                <Col className='community-col' lg={6} md={12}>
+                <section className='community-section'>
+                    <div>
+                        <h2>Community</h2>
+                        <h5>Check all the recipes from our community!</h5>
+                        <Link className='btn btn-white btn-transparent' to='/recipes'>Recipes</Link>
+                    </div>
+                </section>
+                </Col>
+                <Col className='other-col' lg={6} md={12}>
+                <section className='other-section'>
+                    <div>
+                        <h2>Community</h2>
+                        <h5>Check all the recipes from our community!</h5>
+                        <Link className='btn btn-white btn-transparent' to='/recipes'>Recipes</Link>
+                    </div>
+                </section>
+                </Col>
+            </Row>
+            </div>
         </>
     )
 }
