@@ -1,0 +1,43 @@
+.hero {
+    background-image: url('./hero-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    height: 80vh;
+    margin: 7px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: 0.3s ease;
+}
+
+.hero:hover {
+    margin: 0;
+}
+
+.hero .container {
+    height: 100%;
+}
+
+.hero .row {
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 5em;
+}
+
+.more-info {
+    width: 100%
+}
+
+.community {
+    margin: 7px;
+    background-image: url('./chalkboard-background.jfif');
+    height: 80vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.3s ease;
+}
+
+.community:hover {
+    margin: 0;
+}
