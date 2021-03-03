@@ -16,7 +16,7 @@
   background-color: #343a40;
 }
 
-.btn {
+.button {
     margin-top: 30px;
     font-size: 1.2em;
     color: white;
@@ -28,23 +28,23 @@
     font-weight: 700;
 }
 
-.btn.btn-small {
+.button.button-small {
     font-size: 1em;
 }
 
-.btn.btn-white {
+.button.button-white {
     background-color: white;
     border: 3px solid white;
     color: black;
 }
 
-.btn.btn-white.btn-transparent {
+.button.button-white.button-transparent {
     color: white;
     background-color: rgba(255, 255, 255, 0);
     border: 3px solid white;
 }
 
-.btn.btn-white.btn-transparent:hover {
+.button.button-white.button-transparent:hover {
     background-color: white;
     color: black;
 }

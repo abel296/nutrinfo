@@ -10,7 +10,7 @@
     height: 80vh;
     margin: 7px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    transition: 0.3s ease;
+    transition: 0.5s ease;
     max-width: 100%;
 }
 
@@ -45,7 +45,7 @@
     margin: 7px;
     height: 80vh;
     color: white;
-    transition: 0.3s ease;
+    transition: 0.5s ease;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 

@@ -12,7 +12,7 @@ const Home = () => {
                         <Col>
                             <h1>Welcome to Nutrinfo</h1>
                             <h5>Get all the info you need from your own recipes!</h5>  
-                            <Link className='btn btn-white btn-transparent' to='/signup'>Signup!</Link>
+                            <Link className='button button-white button-transparent' to='/signup'>Signup!</Link>
                         </Col>
                     </Row>
                 </Container>
@@ -25,7 +25,7 @@ const Home = () => {
                     <div>
                         <h2>Community</h2>
                         <h5>Check all the recipes from our community!</h5>
-                        <Link className='btn btn-white btn-transparent' to='/recipes'>Recipes</Link>
+                        <Link className='button button-white button-transparent' to='/recipes'>Recipes</Link>
                     </div>
                 </section>
                 </Col>
@@ -34,7 +34,7 @@ const Home = () => {
                     <div>
                         <h2>Community</h2>
                         <h5>Check all the recipes from our community!</h5>
-                        <Link className='btn btn-white btn-transparent' to='/recipes'>Recipes</Link>
+                        <Link className='button button-white button-transparent' to='/recipes'>Recipes</Link>
                     </div>
                 </section>
                 </Col>
