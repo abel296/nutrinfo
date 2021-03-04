@@ -40,7 +40,7 @@ class App extends Component {
       <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
 
       <main>
-        <Routes storeUser={user => this.storeUser(user)}/>
+        <Routes storeUser={user => this.storeUser(user) } loggedUser={this.state.loggedUser} />
       </main>
 
       <Footer />
