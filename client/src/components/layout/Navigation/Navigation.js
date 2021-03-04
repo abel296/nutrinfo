@@ -32,7 +32,7 @@ const Navigation = ({storeUser, loggedUser}) => {
 
                     {
                         !loggedUser
-                            &&
+                            ?
                             <>
                                 <NavLink to='/signup'>
                                     <Nav.Link as='span'>Signup</Nav.Link>
@@ -42,28 +42,14 @@ const Navigation = ({storeUser, loggedUser}) => {
                                     <Nav.Link as='span'>Login</Nav.Link>
                                 </NavLink>
                             </>
-                            
-                    }        
-                    
-                    {/* <NavLink to='/profile'>
-                        <Nav.Link as='span'>Welcome {loggedUser ? loggedUser.username : 'guess'} </Nav.Link>
-                    </NavLink> */}
-                    
-                    
-                    {
-                        loggedUser
-                            &&
-                    <NavDropdown alignRight={true} title={loggedUser.username} id="basic-nav-dropdown">
-                    {/* <NavDropdown alignRight={true} title="Profile" id="basic-nav-dropdown"> */}
-                        <NavDropdown.Item as='span'>
+                            :
+                            <>
                             <NavLink to='/profile'>
-                                <Nav.Link as='span'>Profile</Nav.Link>
+                                <Nav.Link as='span'>{loggedUser.username}</Nav.Link>
                             </NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item as='span'>
+
                             <Nav.Link as='span' onClick={() => logoutUser()} >Logout</Nav.Link>
-                        </NavDropdown.Item>
-                    </NavDropdown>
+                            </>
                     }
 
                 </Nav>
