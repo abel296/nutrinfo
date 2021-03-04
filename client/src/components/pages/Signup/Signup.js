@@ -5,13 +5,13 @@ import AuthService from '../../../service/auth.service'
 
 
 class Signup extends Component {
-  
+    
     constructor() {
-        super();
+        super()
         this.state = {
-        username: "",
-        password: "",
-        };
+            username: '',
+            password: ''
+        }
 
         this.authService = new AuthService()
     }
@@ -28,48 +28,48 @@ class Signup extends Component {
         this.authService
             .signup(this.state)
             .then(response => {
-                console.log(response)
-                // this.props.storeUser(response.data)
-                // this.props.history.push('/')
+                this.props.storeUser((response.data))
+                this.props.history.push('/')
             })
             .catch(err => console.log({err}))
-
     }
 
-  render() {
-    return (
-      <Container>
 
-        <Row>
 
-          <Col md={{span: 4, offset: 4}}>
+    render() {
+        return(
+            <Container>
 
-            <h1>Signup</h1>
-            <hr></hr>
+                <Row>
 
-            <Form onSubmit={e => this.handleSubmit(e)}>
-              <Form.Group>
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" name='username' value={this.state.username} onChange={e => this.handleInputChange(e)} />
-                <Form.Text className="text-muted">
-                  Do you already have an account? Log In here! <Link to='/login'>Login</Link>
-                </Form.Text>
-              </Form.Group>
+                    <Col md={{span: 4, offset: 4}}>
 
-              <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" name='password' value={this.state.password} onChange={e => this.handleInputChange(e)} />
-              </Form.Group>
-              <Button variant="dark" block type="submit">Submit</Button>
-            </Form>
+                        <h1>Signup</h1>
+                        <hr></hr>
 
-          </Col>
+                        <Form onSubmit={e => this.handleSubmit(e)}>
+                        <Form.Group>
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" name='username' value={this.state.username} onChange={e => this.handleInputChange(e)} />
+                            <Form.Text className="text-muted">
+                            Do you already have an account?  <Link to='/login'>Log In here!</Link>
+                            </Form.Text>
+                        </Form.Group>
 
-        </Row>
+                        <Form.Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" name='password' value={this.state.password} onChange={e => this.handleInputChange(e)} />
+                        </Form.Group>
+                        <Button variant="dark" block type="submit">Submit</Button>
+                        </Form>
 
-      </Container>
-    );
-  }
+                    </Col>
+
+                </Row>
+
+        </Container>
+        )
+    }
 }
 
-export default Signup;
+export default Signup

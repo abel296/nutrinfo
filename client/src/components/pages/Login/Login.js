@@ -28,9 +28,8 @@ class Login extends Component {
         this.authService
             .login(this.state)
             .then(response => {
-                console.log(response)
-                // this.props.storeUser((response.data))
-                // this.props.history.push('/')
+                this.props.storeUser((response.data))
+                this.props.history.push('/')
             })
             .catch(err => console.log({err}))
     }
@@ -52,9 +51,9 @@ class Login extends Component {
                         <Form.Group>
                             <Form.Label>Username</Form.Label>
                             <Form.Control type="text" name='username' value={this.state.username} onChange={e => this.handleInputChange(e)} />
-                            {/* <Form.Text className="text-muted">
-                            Do you already have an account? Log In here! <Link to='/login'>Login</Link>
-                            </Form.Text> */}
+                            <Form.Text className="text-muted">
+                            Don't you have an account? <Link to='/login'>Signup here!</Link>
+                            </Form.Text>
                         </Form.Group>
 
                         <Form.Group>
