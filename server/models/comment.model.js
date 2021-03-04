@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const comentSchema = new Schema({
+const commentSchema = new Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -15,6 +15,6 @@ const comentSchema = new Schema({
     timestamps:true
 })
 
-const Comment = mongoose.model('Comment', comentSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 
 module.exports = Comment

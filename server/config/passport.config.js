@@ -11,7 +11,8 @@ module.exports = app => {
     app.use(session({
         secret: process.env.SESSION_SECRET,
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
+
     }))
 
     passport.serializeUser((user, next) => next(null, user._id))

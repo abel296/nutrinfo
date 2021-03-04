@@ -1,9 +1,11 @@
 import { Component } from 'react'
-import { Container , Row, Col } from 'react-bootstrap'
+import { Container , Row, Col, Form, Button } from 'react-bootstrap'
 import './Recipe-details.css'
-
 import { Link } from 'react-router-dom'
+import RecipeComment from './Recipe-comment'
+
 import RecipeService from '../../../service/recipes.service'
+import CommentsService from '../../../service/comments.service'
 
 
 class RecipeDetails extends Component {
@@ -11,10 +13,13 @@ class RecipeDetails extends Component {
     constructor() {
         super()
         this.state = {
-            recipe: undefined
+            recipe: undefined,
+            recipeComments: [],
+            text: ''
         }
 
         this.recipeService = new RecipeService()
+        this.commentsService = new CommentsService()
     }
     
     componentDidMount() {
@@ -23,10 +28,30 @@ class RecipeDetails extends Component {
 
     loadRecipe() {
         const recipe_id = this.props.match.params.recipe_id
+        const recipe = this.recipeService.getRecipe(recipe_id)
+        const comments = this.commentsService.getComments(recipe_id)
 
-        this.recipeService
-            .getRecipe(recipe_id)
-            .then(response => this.setState({recipe: response.data}))
+        Promise
+            .all([recipe, comments])
+            .then(responses => this.setState({recipe: responses[0].data, recipeComments: responses[1].data, text: ''}))
+            .catch(err => console.log(err))
+
+    }
+
+    handleInputChange(e) {
+        const { name, value } = e.target
+        this.setState({[name]: value})
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        const recipe_id = this.props.match.params.recipe_id
+        
+        
+
+        this.commentsService
+            .createComment(recipe_id, this.state)
+            .then(() => this.loadRecipe())
             .catch(err => console.log(err))
 
     }
@@ -85,6 +110,24 @@ class RecipeDetails extends Component {
                             {this.state.recipe.steps.map(elm =><li key={elm._id}><strong>{this.ordinalNumber(elm.number)}</strong> {this.capitalizeFirstLetter(elm.step)}</li>)}
                         </ul>
                     </Col>
+                </Row>
+
+                {this.props.loggedUser && 
+                    <Form onSubmit={e => this.handleSubmit(e)}>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Comment</Form.Label>
+                        <Form.Control as="textarea" rows={3} type='text' name='text' value={this.state.comment} onChange={e => this.handleInputChange(e)} />
+                    </Form.Group>
+                    <Button variant="dark" type="submit">
+                        Submit
+                    </Button> 
+                </Form>
+                }
+
+                <Row>
+                    
+                        {this.state.recipeComments.map(elm => <RecipeComment {...elm} key={elm._id}/>)}
+                    
                 </Row>
 
                 </>
