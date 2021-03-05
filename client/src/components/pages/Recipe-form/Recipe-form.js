@@ -1,6 +1,7 @@
 import { Component } from 'react'
 
 import RecipeService from '../../../service/recipes.service'
+import EdamamService from '../../../service/edamam.service'
 import { Container, Form, Button, Row, Col, ListGroup} from 'react-bootstrap'
 
 class RecipeForm extends Component {
@@ -16,7 +17,7 @@ class RecipeForm extends Component {
                 quantity: 0,
                 unit: ''
             },
-            // nutrients: [],
+            nutrients: [],
             steps: [],
             time: 0,
             servings: 0,
@@ -27,6 +28,7 @@ class RecipeForm extends Component {
         }
 
         this.recipeService = new RecipeService()
+        this.edamamService = new EdamamService()
     }
 
     handleInputChange(e) {
@@ -46,14 +48,59 @@ class RecipeForm extends Component {
 
     handleSubmit(e) {
 
-        const {title, ingredients} = this.state
+        // const {title, ingredients} = this.state
 
         e.preventDefault()
 
-        this.recipeService
-            .createRecipe({title, ingredients})
-            .then(response => console.log(response))
-            .catch(err => console.log({err}))   
+        const nutrientsArr = []
+        const labelsArr = []
+
+        this.state.ingredients.forEach((elm) => {
+            this.edamamService
+                .getIngredientInfo(elm.name, elm.quantity, elm.unit)
+                .then(response => {
+                    
+                    
+                    if (nutrientsArr.length === 0) {
+
+                        //nutrients
+                        nutrientsArr.push(response.data.totalNutrients.ENERC_KCAL)
+                        nutrientsArr.push(response.data.totalNutrients.FAT)
+                        nutrientsArr.push(response.data.totalNutrients.CHOCDF)
+                        nutrientsArr.push(response.data.totalNutrients.PROCNT)
+
+                        //labels
+                        labelsArr.push(...response.data.healthLabels)
+                        
+                    } else {
+
+                        //nutrients
+                        nutrientsArr[0].quantity += response.data.totalNutrients.ENERC_KCAL.quantity
+                        nutrientsArr[1].quantity += response.data.totalNutrients.FAT.quantity
+                        nutrientsArr[2].quantity += response.data.totalNutrients.CHOCDF.quantity
+                        nutrientsArr[3].quantity += response.data.totalNutrients.PROCNT.quantity
+
+                        //labels
+                        const filteredArr = labelsArr.filter(elm => response.data.healthLabels.includes(elm))
+
+                        console.log(filteredArr)
+                        
+
+                        
+                    }
+
+                })
+                .catch(err => console.log({err}))   
+        })
+
+        
+        this.setState({nutrients: nutrientsArr})
+        
+
+        // this.recipeService
+        //     .createRecipe({title, ingredients})
+        //     .then(response => console.log(response))
+        //     .catch(err => console.log({err}))   
         
     }
 

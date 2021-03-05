@@ -1,11 +1,14 @@
 import { Component } from 'react'
-import { Container , Row, Col, Form, Button } from 'react-bootstrap'
+import { Container , Row } from 'react-bootstrap'
 import './Recipe-details.css'
 import { Link } from 'react-router-dom'
 import RecipeComment from './Recipe-comment'
 
 import RecipeService from '../../../service/recipes.service'
 import CommentsService from '../../../service/comments.service'
+import RecipeIngredients from './Recipe-ingredients'
+import RecipeSteps from './Recipe-steps'
+import RecipeCommentForm from './Recipe-comment-form'
 
 
 class RecipeDetails extends Component {
@@ -14,8 +17,7 @@ class RecipeDetails extends Component {
         super()
         this.state = {
             recipe: undefined,
-            recipeComments: [],
-            text: ''
+            recipeComments: []
         }
 
         this.recipeService = new RecipeService()
@@ -87,41 +89,14 @@ class RecipeDetails extends Component {
 
                 <h2>{this.capitalizeFirstLetter(this.state.recipe.title)}</h2>
 
-                <Row>
-                    <Col md={6}>
-                        <img src={this.state.recipe.image[0].url} alt={this.state.recipe.image[0].alt} />
-                        <h5>Ingredients</h5>
-                        <ul>
-                            {this.state.recipe.ingredients.map(elm => <li key={elm._id}><strong>{this.capitalizeFirstLetter(elm.name)}</strong>: {elm.quantity}</li>)}
-                        </ul>
-                    </Col>
-                    <Col>
-                        {this.state.recipe.labels.map((elm, idx)=> <span key={idx}>{this.capitalizeFirstLetter(elm)} </span>)}
-                        <h6>{this.capitalizeFirstLetter(this.state.recipe.diet)}</h6>
-                    </Col>
-                </Row>
+                <RecipeIngredients {...this.state.recipe} />
 
                 <hr />
 
-                <Row>
-                    <Col>
-                        <h5>Steps</h5>
-                        <ul>
-                            {this.state.recipe.steps.map(elm =><li key={elm._id}><strong>{this.ordinalNumber(elm.number)}</strong> {this.capitalizeFirstLetter(elm.step)}</li>)}
-                        </ul>
-                    </Col>
-                </Row>
+                <RecipeSteps  {...this.state.recipe} />
 
                 {this.props.loggedUser && 
-                    <Form onSubmit={e => this.handleSubmit(e)}>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Comment</Form.Label>
-                        <Form.Control as="textarea" rows={3} type='text' name='text' value={this.state.comment} onChange={e => this.handleInputChange(e)} />
-                    </Form.Group>
-                    <Button variant="dark" type="submit">
-                        Submit
-                    </Button> 
-                </Form>
+                    <RecipeCommentForm param={this.props.match.params.recipe_id} refreshList={this.loadRecipe} />
                 }
 
                 <Row>
