@@ -3,6 +3,7 @@ const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const User = require('../models/user.model')
+const {checkLoggedIn, checkMongoId} = require('../middlewares')
 
 router.post('/signup', (req, res) => {
     const {password, username} = req.body
@@ -26,7 +27,7 @@ router.post('/signup', (req, res) => {
             User
                 .create({username, password: hashPass})
                 .then(newUser => req.login(newUser, err => err ? res.status(500).json({message: 'Login error'}) : res.json(newUser)))
-                .catch(err => console.log(err))
+                .catch(() => res.status(500).json({ message: 'Error saving user into DB' }))
         })
 })
 
@@ -47,7 +48,7 @@ router.post('/login', (req, res, next) => {
     }) (req, res, next)
 })
 
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', checkLoggedIn, checkMongoId, (req, res) => {
     
     const {username, image, password} = req.body
 
@@ -58,7 +59,7 @@ router.put('/edit/:id', (req, res) => {
     User
         .findByIdAndUpdate(user_id, {username, image, password: hashPass})
         .then(user => res.json(user))
-        .catch(err => console.log(err))
+        .catch(() => res.status(500).json({ message: 'Error editing user in DB' }))
 })
 
 router.get('/loggedin', (req, res) => req.isAuthenticated() ? res.json(req.user) : res.status(403).json({message: 'Unauthorized'}))
