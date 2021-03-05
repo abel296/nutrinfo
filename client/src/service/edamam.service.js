@@ -8,7 +8,7 @@ class EdamamService {
         })
     }
 
-    getIngredientInfo = (ingredient, quantity) => this.api.get(`/nutrition-data?app_id=9fcb4124&app_key=a90360aec028b68517fa17842976b5ee&ingr=${quantity}%20g%20${ingredient}`)
+    getIngredientInfo = (ingredient, quantity, unit) => this.api.get(`/nutrition-data?app_id=9fcb4124&app_key=a90360aec028b68517fa17842976b5ee&ingr=${quantity}%20${unit}%20${ingredient}`)
     
 }
 

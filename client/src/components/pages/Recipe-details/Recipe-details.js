@@ -1,8 +1,16 @@
 import { Component } from 'react'
-import { Container , Row, Col, Form, Button } from 'react-bootstrap'
-import './Recipe-details.css'
+import { Container , Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import RecipeComment from './Recipe-comment'
+
+import './Recipe-details.css'
+
+import RecipeComments from './Recipe-comments'
+import RecipeIngredients from './Recipe-ingredients'
+import RecipeSteps from './Recipe-steps'
+import RecipeCommentForm from './Recipe-comment-form'
+
+import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
+
 
 import RecipeService from '../../../service/recipes.service'
 import CommentsService from '../../../service/comments.service'
@@ -14,8 +22,7 @@ class RecipeDetails extends Component {
         super()
         this.state = {
             recipe: undefined,
-            recipeComments: [],
-            text: ''
+            recipeComments: []
         }
 
         this.recipeService = new RecipeService()
@@ -35,44 +42,6 @@ class RecipeDetails extends Component {
             .all([recipe, comments])
             .then(responses => this.setState({recipe: responses[0].data, recipeComments: responses[1].data, text: ''}))
             .catch(err => console.log(err))
-
-    }
-
-    handleInputChange(e) {
-        const { name, value } = e.target
-        this.setState({[name]: value})
-    }
-
-    handleSubmit(e) {
-        e.preventDefault()
-        const recipe_id = this.props.match.params.recipe_id
-        
-        
-
-        this.commentsService
-            .createComment(recipe_id, this.state)
-            .then(() => this.loadRecipe())
-            .catch(err => console.log(err))
-
-    }
-
-    capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    ordinalNumber(number) {
-            var j = number % 10,
-            k = number % 100;
-        if (j === 1 && k !== 11) {
-            return number + "st";
-        }
-        if (j === 2 && k !== 12) {
-            return number + "nd";
-        }
-        if (j === 3 && k !== 13) {
-            return number + "rd";
-        }
-        return number + "th";
     }
 
     render() {
@@ -80,55 +49,26 @@ class RecipeDetails extends Component {
             <Container as='section'>
 
             {this.state.recipe
-            
                 ?
 
                 <>
+                <h2>{capitalizeFirstLetter(this.state.recipe.title)}</h2>
 
-                <h2>{this.capitalizeFirstLetter(this.state.recipe.title)}</h2>
-
-                <Row>
-                    <Col md={6}>
-                        <img src={this.state.recipe.image[0].url} alt={this.state.recipe.image[0].alt} />
-                        <h5>Ingredients</h5>
-                        <ul>
-                            {this.state.recipe.ingredients.map(elm => <li key={elm._id}><strong>{this.capitalizeFirstLetter(elm.name)}</strong>: {elm.quantity}</li>)}
-                        </ul>
-                    </Col>
-                    <Col>
-                        {this.state.recipe.labels.map((elm, idx)=> <span key={idx}>{this.capitalizeFirstLetter(elm)} </span>)}
-                        <h6>{this.capitalizeFirstLetter(this.state.recipe.diet)}</h6>
-                    </Col>
-                </Row>
+                <RecipeIngredients {...this.state.recipe} />
 
                 <hr />
 
-                <Row>
-                    <Col>
-                        <h5>Steps</h5>
-                        <ul>
-                            {this.state.recipe.steps.map(elm =><li key={elm._id}><strong>{this.ordinalNumber(elm.number)}</strong> {this.capitalizeFirstLetter(elm.step)}</li>)}
-                        </ul>
-                    </Col>
-                </Row>
+                <RecipeSteps  {...this.state.recipe} />
 
                 {this.props.loggedUser && 
-                    <Form onSubmit={e => this.handleSubmit(e)}>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Comment</Form.Label>
-                        <Form.Control as="textarea" rows={3} type='text' name='text' value={this.state.comment} onChange={e => this.handleInputChange(e)} />
-                    </Form.Group>
-                    <Button variant="dark" type="submit">
-                        Submit
-                    </Button> 
-                </Form>
+
+                    <RecipeCommentForm param={this.props.match.params.recipe_id} refreshList={() => this.loadRecipe()} />
+
                 }
 
-                <Row>
-                    
-                        {this.state.recipeComments.map(elm => <RecipeComment {...elm} key={elm._id}/>)}
-                    
-                </Row>
+               
+                    <RecipeComments recipeComments = {this.state.recipeComments} />
+                
 
                 </>
                 :
