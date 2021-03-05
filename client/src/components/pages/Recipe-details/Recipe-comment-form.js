@@ -13,14 +13,18 @@ class RecipeCommentForm extends Component {
         this.commentsService = new CommentsService()
     }
 
+    handleInputChange(e) {
+        const { name, value } = e.target
+        this.setState({[name]: value})
+    }
+
     handleSubmit(e) {
 
         e.preventDefault()
-        const recipe_id = this.props.match.params.recipe_id
         
         this.commentsService
-            .createComment(recipe_id, this.state)
-            .then(() => this.loadRecipe())
+            .createComment(this.props.param, this.state)
+            .then(() => this.props.refreshList())
             .catch(err => console.log(err))
     }
     

@@ -52,49 +52,77 @@ class RecipeForm extends Component {
 
         e.preventDefault()
 
-        const nutrientsArr = []
-        const labelsArr = []
+        const promisesArr = this.state.ingredients
+        .map(ing => this.edamamService.getIngredientInfo(ing.name, ing.quantity, ing.unit).then(response => response.data))
+       
+        Promise.all(promisesArr)
+        .then(allIngredients => {
+            const nutrientsArr = allIngredients.reduce((acc, elm) => {
 
-        this.state.ingredients.forEach((elm) => {
-            this.edamamService
-                .getIngredientInfo(elm.name, elm.quantity, elm.unit)
-                .then(response => {
-                    
-                    
-                    if (nutrientsArr.length === 0) {
+                acc[0].quantity += elm.totalNutrients.ENERC_KCAL.quantity
+                acc[1].quantity += elm.totalNutrients.FAT.quantity
+                acc[2].quantity += elm.totalNutrients.CHOCDF.quantity
+                acc[3].quantity += elm.totalNutrients.PROCNT.quantity
 
-                        //nutrients
-                        nutrientsArr.push(response.data.totalNutrients.ENERC_KCAL)
-                        nutrientsArr.push(response.data.totalNutrients.FAT)
-                        nutrientsArr.push(response.data.totalNutrients.CHOCDF)
-                        nutrientsArr.push(response.data.totalNutrients.PROCNT)
+                return acc
 
-                        //labels
-                        labelsArr.push(...response.data.healthLabels)
-                        
-                    } else {
+            } , [{label:'Energy',quantity: 0, unit:'kcal'},{label:'Fat',quantity: 0, unit:'g'},{label:'Carbs',quantity: 0, unit:'g'},{label:'Protein',quantity: 0, unit:'kcal'}])
+           
+            const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
+                const newAcc = [...acc]
+                acc.forEach( label => !eachIng.healthLabels.includes(label) && newAcc.splice(idx, 1) )
+                return newAcc
+            }, allIngredients[0].healthLabels)
 
-                        //nutrients
-                        nutrientsArr[0].quantity += response.data.totalNutrients.ENERC_KCAL.quantity
-                        nutrientsArr[1].quantity += response.data.totalNutrients.FAT.quantity
-                        nutrientsArr[2].quantity += response.data.totalNutrients.CHOCDF.quantity
-                        nutrientsArr[3].quantity += response.data.totalNutrients.PROCNT.quantity
-
-                        //labels
-                        const filteredArr = labelsArr.filter(elm => response.data.healthLabels.includes(elm))
-
-                        console.log(filteredArr)
-                        
-
-                        
-                    }
-
-                })
-                .catch(err => console.log({err}))   
+            this.setState({nutrients: nutrientsArr})
         })
+        .catch(err => console.log(err))
+        // this.state.ingredients.forEach((ingredient) => {
+        //     this.edamamService
+        //         .getIngredientInfo(ingredient.name, ingredient.quantity, ingredient.unit)
+        //         .then(response => {
+        //             console.log("en ello...")
+                    
+        //             if (nutrientsArr.length === 0) {
+
+        //                 //nutrients
+        //                 nutrientsArr.push(response.data.totalNutrients.ENERC_KCAL)
+        //                 nutrientsArr.push(response.data.totalNutrients.FAT)
+        //                 nutrientsArr.push(response.data.totalNutrients.CHOCDF)
+        //                 nutrientsArr.push(response.data.totalNutrients.PROCNT)
+
+        //                 //labels
+        //                 labelsArr.push(...response.data.healthLabels)
+                        
+        //             } else {
+
+        //                 //nutrients
+        //                 nutrientsArr[0].quantity += response.data.totalNutrients.ENERC_KCAL.quantity
+        //                 nutrientsArr[1].quantity += response.data.totalNutrients.FAT.quantity
+        //                 nutrientsArr[2].quantity += response.data.totalNutrients.CHOCDF.quantity
+        //                 nutrientsArr[3].quantity += response.data.totalNutrients.PROCNT.quantity
+
+                        
+        //                 const labelsToPush = []
+        //                 //labels
+        //                 labelsArr.forEach((label, idx) => {
+        //                     if (!response.data.healthLabels.includes(label)){
+        //                         const IndexOfLabel = labelsArr.indexOf(label)
+        //                         labelsArr.splice(IndexOfLabel, 1)
+        //                     } else {
+        //                         labelsToPush.push(response.data.healthLabels[idx])
+        //                     }
+        //                 })
+                        
+        //                 labelsArr.push(...labelsToPush)
+                        
+        //             }
+
+        //         })
+        //         .catch(err => console.log({err}))   
+      // })
 
         
-        this.setState({nutrients: nutrientsArr})
         
 
         // this.recipeService
