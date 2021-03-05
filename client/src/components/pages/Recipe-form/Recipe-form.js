@@ -1,6 +1,7 @@
 import { Component } from 'react'
+
 import RecipeService from '../../../service/recipes.service'
-import { Container, Form, Button, Row, Col, ListGroup } from 'react-bootstrap'
+import { Container, Form, Button, Row, Col, ListGroup} from 'react-bootstrap'
 
 class RecipeForm extends Component {
 
@@ -65,42 +66,45 @@ class RecipeForm extends Component {
                         <Form.Label>Title</Form.Label>
                         <Form.Control type="text" name="title" value={this.state.title} onChange={e => this.handleInputChange(e)} />
                     </Form.Group>
-                        <ListGroup>                    
-                                {this.state.ingredients?.map(elm =><p>{elm.name}{elm.quantity}{elm.unit}</p>)}                     
-                        </ListGroup>
                     <Form.Group>
-                    <Row>
-                        <Col md={{span: 6}} >
-                            <Form.Label>Ingredient</Form.Label>                            
-                            <Form.Control type="text" name="name" value={this.state.ingToPush.name} onChange={e => this.handleIngredientInputChange(e)}/>
-                            
+                        <Row>
+                            <Col >
+                                <Form.Label>Ingredient</Form.Label>                            
+                                <Form.Control type="text" name="name" value={this.state.ingToPush.name} onChange={e => this.handleIngredientInputChange(e)}/>
+                            </Col>
+                            <Col md={{span: 2}}>
+                                <Form.Label>Quantity</Form.Label>
+                                <Form.Control type="number" name="quantity" value={this.state.ingToPush.quantity} onChange={e => this.handleIngredientInputChange(e)}/>
+                            </Col>
+                            <Col md={{span: 2}}>
+                                {/* <Form.Label>Unit</Form.Label>
+                                <Form.Control type="text" name="unit" value={this.state.ingToPush.unit} onChange={e => this.handleIngredientInputChange(e)}/> */}
+                                <Form.Label>Unit</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    className="mr-sm-2"
+                                    id="inlineFormCustomSelect"
+                                    name="unit"
+                                    custom
+                                    onChange={e => this.handleIngredientInputChange(e)}
+                                >
+                                    <option value=''>Choose...</option>
+                                    <option value='g' >g</option>
+                                    <option value='Kg' >kg</option>
+                                    <option value='l' >l</option>
+                                    <option value='ml' >ml</option>
+                                </Form.Control>
+                            </Col>
 
-                        </Col>
-                        <Col>
-                            <Form.Label>Quantity</Form.Label>
-                            <Form.Control type="number" name="quantity" value={this.state.ingToPush.quantity} onChange={e => this.handleIngredientInputChange(e)}/>
-                        </Col>
-                        <Col>
-
-                            <Form.Label>Unit</Form.Label>
-                            <Form.Control type="text" name="unit" value={this.state.ingToPush.unit} onChange={e => this.handleIngredientInputChange(e)}/>
-
-                            {/* <Form.Control
-                                as="select"
-                                className="mr-sm-2"
-                                id="inlineFormCustomSelect"
-                                custom
-                            >
-                                <option value="0">Choose...</option>
-                                <option name="unit" value='g' onChange={e => this.handleIngredientInputChange(e)}>g</option>
-                                <option name="unit" value='Kg' onChange={e => this.handleIngredientInputChange(e)}>Kg</option>
-                                <option name="unit" value='l' onChange={e => this.handleIngredientInputChange(e)}>l</option>
-                                <option name="unit" value='ml' onChange={e => this.handleIngredientInputChange(e)}>ml</option>
-                            </Form.Control> */}
-                        </Col>
-                    </Row>
-                        
-                        <Button style={{marginTop: 10}} onClick={() => this.addIngredient()} variant="dark"  type="button">Add ingredient</Button>
+                            <Col className='d-flex' md={{span: 2}}>
+                                <Button onClick={() => this.addIngredient()} variant="dark"  type="button">Add ingredient</Button>
+                            </Col>
+                        </Row>
+                            <Col Col >
+                                <ListGroup variant="flush">
+                                        {this.state.ingredients?.map(elm =><ListGroup.Item>{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
+                                </ListGroup>
+                            </Col>
                     </Form.Group>
                     
                     <Button variant="dark" block type="submit">New Recipe</Button>
