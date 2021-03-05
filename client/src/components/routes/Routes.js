@@ -15,7 +15,7 @@ const Routes = ({storeUser, loggedUser}) => {
             <Route path="/" exact render={() => <Home />} />
             <Route path="/recipes" render={() => <Recipes />} />
             <Route path="/recipe-details/:recipe_id" render={(props) => <RecipeDetails {...props} loggedUser={loggedUser} />} />
-            <Route path="/profile" render={() => <Profile />} />
+            <Route path="/profile" render={() => <Profile loggedUser={loggedUser} />} />
             <Route path="/signup" render={props => <Signup storeUser={storeUser} {...props} />} />
             <Route path="/login" render={props => <Login storeUser={storeUser} {...props} />} />
         </Switch>

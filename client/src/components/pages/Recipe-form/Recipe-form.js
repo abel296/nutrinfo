@@ -19,6 +19,10 @@ class RecipeForm extends Component {
             },
             nutrients: [],
             steps: [],
+            stepToPush: {
+                step: '',
+                number: 0
+            },
             time: 0,
             servings: 0,
             // diet: [],
@@ -44,8 +48,16 @@ class RecipeForm extends Component {
     addIngredient() {
         this.setState({ingredients: [...this.state.ingredients, this.state.ingToPush]})
     }
-    
 
+    handleStepInputChange(e) {
+        const {name, value} = e.target 
+        this.setState( { stepToPush: {...this.state.stepToPush, [name]: value} })
+    }
+
+    addStep() {
+        this.setState({steps: [...this.state.steps, this.state.stepToPush]})
+    }
+    
     handleSubmit(e) {
 
         // const {title, ingredients} = this.state
@@ -68,15 +80,30 @@ class RecipeForm extends Component {
 
             } , [{label:'Energy',quantity: 0, unit:'kcal'},{label:'Fat',quantity: 0, unit:'g'},{label:'Carbs',quantity: 0, unit:'g'},{label:'Protein',quantity: 0, unit:'kcal'}])
            
-            const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
-                const newAcc = [...acc]
-                acc.forEach( label => !eachIng.healthLabels.includes(label) && newAcc.splice(idx, 1) )
-                return newAcc
-            }, allIngredients[0].healthLabels)
+            // const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
+            //     const newAcc = [...acc]
+            //     acc.forEach( label => !eachIng.healthLabels.includes(label) && newAcc.splice(idx, 1) )
+            //     return newAcc
+            // }, allIngredients[0].healthLabels)
 
             this.setState({nutrients: nutrientsArr})
+            return null
+        })
+        .then(() => {
+            const {title, ingredients, steps, time, servings, nutrients } = this.state
+
+            const user_id = this.props.loggedUser._id
+    
+            this.recipeService
+                .createRecipe({title, ingredients, steps, time, servings, nutrients, owner: user_id})
+                .then((response) => console.log(response))
+                .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
+
+        
+
+        //#region
         // this.state.ingredients.forEach((ingredient) => {
         //     this.edamamService
         //         .getIngredientInfo(ingredient.name, ingredient.quantity, ingredient.unit)
@@ -121,6 +148,7 @@ class RecipeForm extends Component {
         //         })
         //         .catch(err => console.log({err}))   
       // })
+      
 
         
         
@@ -128,7 +156,8 @@ class RecipeForm extends Component {
         // this.recipeService
         //     .createRecipe({title, ingredients})
         //     .then(response => console.log(response))
-        //     .catch(err => console.log({err}))   
+        //     .catch(err => console.log({err})) 
+        //#endregion  
         
     }
 
@@ -175,12 +204,49 @@ class RecipeForm extends Component {
                                 <Button onClick={() => this.addIngredient()} variant="dark"  type="button">Add ingredient</Button>
                             </Col>
                         </Row>
+
+                        <Col Col >
+                            <ListGroup variant="flush">
+                                    {this.state.ingredients?.map(elm =><ListGroup.Item>{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
+                            </ListGroup>
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group> 
+                        <Row>
+                            <Col md={{span: 2}}>
+                                <Form.Label>Number</Form.Label>                            
+                                <Form.Control type="number" name="number" value={this.state.stepToPush.number} onChange={e => this.handleStepInputChange(e)}/>
+                            </Col>
+
+                            <Col >
+                                <Form.Label>Step</Form.Label>
+                                <Form.Control type="text" name="step" value={this.state.stepToPush.step} onChange={e => this.handleStepInputChange(e)}/>
+                            </Col>
+
+                            <Col className='d-flex' md={{span: 2}}>
+                                <Button onClick={() => this.addStep()} variant="dark"  type="button">Add step</Button>
+                            </Col>
+                        </Row>
+
                             <Col Col >
                                 <ListGroup variant="flush">
-                                        {this.state.ingredients?.map(elm =><ListGroup.Item>{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
+                                        {this.state.steps?.map(elm =><ListGroup.Item>{elm.number} {elm.step}</ListGroup.Item>)}   
                                 </ListGroup>
                             </Col>
-                    </Form.Group>
+                        </Form.Group>
+                        <Form.Group>
+                            <Row>
+                                <Col>
+                                    <Form.Label>Time</Form.Label>
+                                    <Form.Control type="number" name="time" value={this.state.time} onChange={e => this.handleInputChange(e)} />
+                                </Col>
+                                <Col>
+                                    <Form.Label>Servings</Form.Label>
+                                    <Form.Control type="number" name="servings" value={this.state.servings} onChange={e => this.handleInputChange(e)} />
+                                </Col>
+                            </Row>
+                        </Form.Group>                     
                     
                     <Button variant="dark" block type="submit">New Recipe</Button>
                     

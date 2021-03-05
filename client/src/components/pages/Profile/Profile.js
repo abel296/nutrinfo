@@ -1,10 +1,10 @@
 import RecipeForm from "../Recipe-form/Recipe-form"
 
-const Profile = () => {
+const Profile = ({loggedUser}) => {
     return (
         <>
         <h1>Profile</h1>
-        <RecipeForm></RecipeForm>
+        <RecipeForm loggedUser={loggedUser}></RecipeForm>
         </>
     )
 }
