@@ -7,6 +7,7 @@ import './Recipe-details.css'
 import RecipeComments from './Recipe-comments'
 import RecipeIngredients from './Recipe-ingredients'
 import RecipeSteps from './Recipe-steps'
+import Rating from './Recipe-rating'
 import RecipeCommentForm from './Recipe-comment-form'
 
 import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
@@ -14,6 +15,8 @@ import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
 
 import RecipeService from '../../../service/recipes.service'
 import CommentsService from '../../../service/comments.service'
+import RatingsService from '../../../service/ratings.service'
+
 
 
 class RecipeDetails extends Component {
@@ -22,11 +25,13 @@ class RecipeDetails extends Component {
         super()
         this.state = {
             recipe: undefined,
-            recipeComments: []
+            recipeComments: [],
+            recipeRating: 0
         }
 
         this.recipeService = new RecipeService()
         this.commentsService = new CommentsService()
+        this.ratingsService = new RatingsService()
     }
     
     componentDidMount() {
@@ -37,10 +42,16 @@ class RecipeDetails extends Component {
         const recipe_id = this.props.match.params.recipe_id
         const recipe = this.recipeService.getRecipe(recipe_id)
         const comments = this.commentsService.getComments(recipe_id)
+        const ratings = this.ratingsService.getRatings(recipe_id)
 
         Promise
-            .all([recipe, comments])
-            .then(responses => this.setState({recipe: responses[0].data, recipeComments: responses[1].data, text: ''}))
+            .all([recipe, comments, ratings])
+            .then(responses => {
+                const ratingsSum = responses[2].data.reduce((acc, elm) => acc + elm.rating, 0)
+                const ratingsAverage = (ratingsSum/responses[2].data.length).toFixed(2)
+
+                this.setState({recipe: responses[0].data, recipeComments: responses[1].data, recipeRating: ratingsAverage})
+            })
             .catch(err => console.log(err))
     }
 
@@ -61,9 +72,11 @@ class RecipeDetails extends Component {
                 <RecipeSteps  {...this.state.recipe} />
 
                 {this.props.loggedUser && 
+                    <>
+                    <Rating param={this.props.match.params.recipe_id} recipeRating={this.state.recipeRating} refreshList={() => this.loadRecipe()} />
 
                     <RecipeCommentForm param={this.props.match.params.recipe_id} refreshList={() => this.loadRecipe()} />
-
+                    </>
                 }
 
                

@@ -25,7 +25,7 @@ router.post('/createComment/:id', checkLoggedIn, checkMongoId, (req, res) => {
     Comment
         .create({owner: user_id, text: req.body.text, recipe: recipe_id})
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: 'Error saving comment into DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error saving comment into DB', err }))
 })
 
 module.exports = router

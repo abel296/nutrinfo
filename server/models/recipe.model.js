@@ -36,13 +36,6 @@ const recipeSchema = new Schema({
         type: String,
         enum: ["high-protein", "low-carb", "low-fat", "balanced", "high-fiber", "low-sodium"]
     },
-    rating: [{
-        owner: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        },
-        qualification: Number
-    }],
     labels: [String],
     owner: {
         type: mongoose.Schema.Types.ObjectId,

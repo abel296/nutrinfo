@@ -12,9 +12,7 @@ const RecipeComments = ({recipeComments}) => {
                 </Col>
                 )    
             })
-            }
-            
-            
+            }  
         </Row>
          
         )
