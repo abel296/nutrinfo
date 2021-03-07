@@ -1,12 +1,14 @@
 import { Row, Col } from 'react-bootstrap'
 
+import DoughnutChart from './Doughnut-chart'
+
 import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
 
 
-const RecipeIngredients = ({image, ingredients, labels, diet}) => {
+const RecipeIngredients = ({image, ingredients, labels, diet,nutrients}) => {
     return (
         <Row>
-            <Col m d={6}>
+            <Col md={6}>
                 {image[0] && <img src={image[0].url} alt={image[0].alt} />}
                 
                 
@@ -16,6 +18,7 @@ const RecipeIngredients = ({image, ingredients, labels, diet}) => {
                 </ul>
             </Col>
             <Col>
+                <DoughnutChart title='Nutrients' data={nutrients} />
                 {labels && labels.map((elm, idx)=> <span key={idx}>{capitalizeFirstLetter(elm)} </span>)}
                 <h6>{diet && capitalizeFirstLetter(diet)}</h6>
             </Col>
