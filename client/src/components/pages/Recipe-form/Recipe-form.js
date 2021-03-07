@@ -11,29 +11,30 @@ class RecipeForm extends Component {
     constructor() {
         super()
         this.state = {
-            image: {
-                url: '',
-                alt: ''
+            recipe: {
+                image: {
+                    url: '',
+                    alt: ''
+                },
+                title: '',
+                ingredients: [],
+                nutrients: [],
+                steps: [],
+                time: 0,
+                servings: 0,
+                // diet: [],
+                // rating: [],
+                // labels: [],
             },
-            title: '',
-            ingredients: [],
             ingToPush: {
                 name: '',
                 quantity: 0,
                 unit: ''
-            },
-            nutrients: [],
-            steps: [],
+            },            
             stepToPush: {
                 step: '',
                 number: 0
-            },
-            time: 0,
-            servings: 0,
-            // diet: [],
-            // rating: [],
-            // labels: [],
-            owner: '',
+            },            
             isUploading: false
         }
 
@@ -44,7 +45,7 @@ class RecipeForm extends Component {
 
     handleInputChange(e) {
         const {name, value} = e.target
-        this.setState( {[name]: value })
+        this.setState( {recipe: {...this.state.recipe, [name]: value}} )
     }
 
     handleIngredientInputChange(e) {
@@ -53,7 +54,7 @@ class RecipeForm extends Component {
     }
 
     addIngredient() {
-        this.setState({ingredients: [...this.state.ingredients, this.state.ingToPush]})
+        this.setState( {recipe: {...this.state.recipe, ingredients: [...this.state.recipe.ingredients, this.state.ingToPush]}})
     }
 
     handleStepInputChange(e) {
@@ -62,7 +63,7 @@ class RecipeForm extends Component {
     }
 
     addStep() {
-        this.setState({steps: [...this.state.steps, this.state.stepToPush]})
+        this.setState( {recipe: {...this.state.recipe, steps: [...this.state.recipe.steps, this.state.stepToPush]}})
     }
     
     handleSubmit(e) {
@@ -71,7 +72,7 @@ class RecipeForm extends Component {
 
         e.preventDefault()
 
-        const promisesArr = this.state.ingredients
+        const promisesArr = this.state.recipe.ingredients
         .map(ing => this.edamamService.getIngredientInfo(ing.name, ing.quantity, ing.unit).then(response => response.data))
        
         Promise.all(promisesArr)
@@ -93,16 +94,15 @@ class RecipeForm extends Component {
             //     return newAcc
             // }, allIngredients[0].healthLabels)
 
-            this.setState({nutrients: nutrientsArr})
+            this.setState({recipe: {...this.state.recipe, nutrients: nutrientsArr}})
             return null
         })
         .then(() => {
-            const {title, ingredients, steps, time, servings, nutrients, image } = this.state
 
             const user_id = this.props.loggedUser._id
     
             this.recipeService
-                .createRecipe({title, ingredients, steps, time, servings, nutrients, owner: user_id, image})
+                .createRecipe({...this.state.recipe, owner: user_id})
                 .then((response) => console.log(response))
                 .catch(err => console.log(err))
         })
@@ -180,10 +180,10 @@ class RecipeForm extends Component {
             .then(response => {
                 this.setState({
                     isUploading: false,
-                    image: {
+                    recipe: {...this.state.recipe, image: {
                         url: response.data.secure_url,
                         alt: response.data.secure_url
-                    } 
+                    }} 
                 })
             })
             .catch(err => console.log(err))
@@ -196,7 +196,7 @@ class RecipeForm extends Component {
                 <Form onSubmit={e => this.handleSubmit(e)}>
                     <Form.Group>
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" name="title" value={this.state.title} onChange={e => this.handleInputChange(e)} />
+                        <Form.Control type="text" name="title" value={this.state.recipe.title} onChange={e => this.handleInputChange(e)} />
                     </Form.Group>
                     <Form.Group>
                         <Row>
@@ -235,7 +235,7 @@ class RecipeForm extends Component {
 
                         <Col Col >
                             <ListGroup variant="flush">
-                                    {this.state.ingredients?.map(elm =><ListGroup.Item>{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
+                                    {this.state.recipe.ingredients?.map(elm =><ListGroup.Item>{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
                             </ListGroup>
                         </Col>
                         </Form.Group>
@@ -259,7 +259,7 @@ class RecipeForm extends Component {
 
                             <Col Col >
                                 <ListGroup variant="flush">
-                                        {this.state.steps?.map(elm =><ListGroup.Item>{elm.number} {elm.step}</ListGroup.Item>)}   
+                                        {this.state.recipe.steps?.map(elm =><ListGroup.Item>{elm.number} {elm.step}</ListGroup.Item>)}   
                                 </ListGroup>
                             </Col>
                         </Form.Group>
@@ -267,11 +267,11 @@ class RecipeForm extends Component {
                             <Row>
                                 <Col>
                                     <Form.Label>Time</Form.Label>
-                                    <Form.Control type="number" name="time" value={this.state.time} onChange={e => this.handleInputChange(e)} />
+                                    <Form.Control type="number" name="time" value={this.state.recipe.time} onChange={e => this.handleInputChange(e)} />
                                 </Col>
                                 <Col>
                                     <Form.Label>Servings</Form.Label>
-                                    <Form.Control type="number" name="servings" value={this.state.servings} onChange={e => this.handleInputChange(e)} />
+                                    <Form.Control type="number" name="servings" value={this.state.recipe.servings} onChange={e => this.handleInputChange(e)} />
                                 </Col>
                             </Row>
                         </Form.Group>
