@@ -5,7 +5,7 @@ const RecipeCard = ({image, title, _id}) => {
     return (
         <Col lg={4}>
             <Card>
-                <Card.Img variant="top" src={image[0]?.url}/>
+                <Card.Img variant="top" src={image?.url}/>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Link to={`/recipe-details/${_id}`} className='button button-small'>See details</Link> 

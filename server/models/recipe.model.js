@@ -6,13 +6,13 @@ const recipeSchema = new Schema({
         type: String,
         required: true
     },
-    image: [{
+    image: {
         url: {
             type: String,
             default: 'https://masquevinilo.com/5324-thickbox_default/vinilo-decorativo-verduras-a-la-sarten.jpg'
         },
         alt: String
-    }],
+    },
     ingredients: {
         type: [{
             name: String,

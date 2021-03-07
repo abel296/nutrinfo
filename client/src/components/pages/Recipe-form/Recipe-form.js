@@ -2,14 +2,19 @@ import { Component } from 'react'
 
 import RecipeService from '../../../service/recipes.service'
 import EdamamService from '../../../service/edamam.service'
+import UploadService from '../../../service/upload.service'
 import { Container, Form, Button, Row, Col, ListGroup} from 'react-bootstrap'
+import Spinner from '../../shared/Spinner/Spinner'
 
 class RecipeForm extends Component {
 
     constructor() {
         super()
         this.state = {
-            image: [],
+            image: {
+                url: '',
+                alt: ''
+            },
             title: '',
             ingredients: [],
             ingToPush: {
@@ -28,11 +33,13 @@ class RecipeForm extends Component {
             // diet: [],
             // rating: [],
             // labels: [],
-            owner: '' // ?????????????
+            owner: '',
+            isUploading: false
         }
 
         this.recipeService = new RecipeService()
         this.edamamService = new EdamamService()
+        this.uploadService = new UploadService()
     }
 
     handleInputChange(e) {
@@ -90,12 +97,12 @@ class RecipeForm extends Component {
             return null
         })
         .then(() => {
-            const {title, ingredients, steps, time, servings, nutrients } = this.state
+            const {title, ingredients, steps, time, servings, nutrients, image } = this.state
 
             const user_id = this.props.loggedUser._id
     
             this.recipeService
-                .createRecipe({title, ingredients, steps, time, servings, nutrients, owner: user_id})
+                .createRecipe({title, ingredients, steps, time, servings, nutrients, owner: user_id, image})
                 .then((response) => console.log(response))
                 .catch(err => console.log(err))
         })
@@ -159,6 +166,27 @@ class RecipeForm extends Component {
         //     .catch(err => console.log({err})) 
         //#endregion  
         
+    }
+
+    handleFileUpload = e => {
+
+        this.setState({ isUploading: true})
+
+        const uploadData = new FormData()
+        uploadData.append('imageUrl', e.target.files[0])
+
+        this.uploadService
+            .uploadFile(uploadData)
+            .then(response => {
+                this.setState({
+                    isUploading: false,
+                    image: {
+                        url: response.data.secure_url,
+                        alt: response.data.secure_url
+                    } 
+                })
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -246,6 +274,11 @@ class RecipeForm extends Component {
                                     <Form.Control type="number" name="servings" value={this.state.servings} onChange={e => this.handleInputChange(e)} />
                                 </Col>
                             </Row>
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Image (File) {this.state.isUploading && <Spinner />}</Form.Label>
+                            <Form.Control type="file" name="imageUrl" onChange={e => this.handleFileUpload(e)} />
                         </Form.Group>                     
                     
                     <Button variant="dark" block type="submit">New Recipe</Button>

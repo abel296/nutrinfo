@@ -1,4 +1,29 @@
-.on-load {
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-width: 4px;
+  border-style: solid;
+  border-top-color: black;
+  border-left-color: black;
+  border-right-color: rgb(179, 179, 179);
+  border-bottom-color: rgb(179, 179, 179);
+  animation: spinner .2s infinite linear
+}
+
+
+@keyframes spinner {
+  from {
+      transform: rotate(0deg);
+  }
+
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+
+/* .on-load {
   opacity: 0;
   animation: fade-in-up 1s forwards;
 }
@@ -36,4 +61,4 @@ body {
   padding: 0;
   display: grid;
   place-items: center;
-}
+} */
