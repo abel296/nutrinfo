@@ -4,6 +4,7 @@ import './App.css'
 import Routes from './routes/Routes'
 import Navigation from './layout/Navigation/Navigation'
 import Footer from './layout/Footer/Footer'
+import Alert from './shared/Alert/Alert'
 import AuthService from '../service/auth.service'
 
 
@@ -13,7 +14,12 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      loggedUser: undefined
+      loggedUser: undefined,
+      alert: {
+        show: false,
+        title: '',
+        text: ''
+      }
     }
 
     this.authService = new AuthService()
@@ -34,16 +40,19 @@ class App extends Component {
     this.fetchUser()
   }
 
+  handleAlert = (show, title, text) => this.setState({alert: { show, title, text }})
+
   render() {
     return(
       <>
       <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
 
       <main>
-        <Routes storeUser={user => this.storeUser(user) } loggedUser={this.state.loggedUser} />
+        <Routes storeUser={user => this.storeUser(user) } loggedUser={this.state.loggedUser} handleAlert={this.handleAlert} />
       </main>
 
       <Footer />
+      <Alert handleAlert={this.handleAlert} show={this.state.alert.show} title={this.state.alert.title} text={this.state.alert.text}/>
     </>
     )
   }

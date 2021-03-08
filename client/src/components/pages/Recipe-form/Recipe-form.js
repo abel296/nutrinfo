@@ -5,6 +5,7 @@ import EdamamService from '../../../service/edamam.service'
 import UploadService from '../../../service/upload.service'
 import { Container, Form, Button, Row, Col, ListGroup} from 'react-bootstrap'
 import Spinner from '../../shared/Spinner/Spinner'
+import './Recipe-form.css'
 
 class RecipeForm extends Component {
 
@@ -112,7 +113,11 @@ class RecipeForm extends Component {
     
             this.recipeService
                 .createRecipe({...this.state.recipe, owner: user_id})
-                .then((response) => console.log(response))
+                .then(() => {
+                    this.props.closeModal()
+                    this.props.refreshList()
+                    this.props.handleAlert(true, 'Registration saved', 'The recipe has been saved into our Database')
+                })
                 .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
@@ -237,7 +242,7 @@ class RecipeForm extends Component {
                                 </Form.Control>
                             </Col>
 
-                            <Col className='d-flex' md={{span: 2}}>
+                            <Col className='add-ing-btn' md={{span: 2}}>
                                 <Button onClick={() => this.addIngredient()} variant="dark"  type="button">Add ingredient</Button>
                             </Col>
                         </Row>
@@ -261,7 +266,7 @@ class RecipeForm extends Component {
                                 <Form.Control type="text" name="step" value={this.state.stepToPush.step} onChange={e => this.handleStepInputChange(e)}/>
                             </Col>
 
-                            <Col className='d-flex' md={{span: 2}}>
+                            <Col className='add-step-btn' md={{span: 2}}>
                                 <Button onClick={() => this.addStep()} variant="dark"  type="button">Add step</Button>
                             </Col>
                         </Row>

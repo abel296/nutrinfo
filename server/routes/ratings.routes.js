@@ -10,7 +10,7 @@ router.get('/getRecipeRatings/:id', checkLoggedIn, checkMongoId, (req, res) => {
     Rating
         .find({recipe: recipe_id})
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: 'Error getting ratings from DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error getting ratings from DB', err }))
 })
 
 router.post('/createRating/:id', checkLoggedIn, checkMongoId, (req, res) => {

@@ -1,0 +1,15 @@
+.add-ing-btn {
+    align-self: flex-end;
+}
+
+.add-ing-btn button {
+    width: 100%;
+}
+
+.add-step-btn {
+    align-self: flex-end;
+}
+
+.add-step-btn button {
+    width: 100%;
+}
