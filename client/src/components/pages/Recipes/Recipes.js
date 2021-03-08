@@ -2,7 +2,7 @@ import { Component } from 'react'
 import RecipeService from '../../../service/recipes.service'
 import RecipesList from './RecipesList'
 
-import {Container} from 'react-bootstrap'
+import {Container, Col, Row} from 'react-bootstrap'
 
 class Recipes extends Component {
 
@@ -11,6 +11,8 @@ class Recipes extends Component {
         this.state = {
             recipes: []
         }
+
+        
 
         this.recipeService = new RecipeService()
     }
@@ -32,13 +34,20 @@ class Recipes extends Component {
 
         return(
             <>
-                <Container>
+            <Row>
+                <Col xl={2}>
 
-                    <h1>Recipes</h1>
-                    
-                    <RecipesList recipes={this.state.recipes} />
-                
-                </Container>
+                </Col>
+                <Col xl={10}>
+                    <Container>
+
+                        <h1>Recipes</h1>
+                        
+                        <RecipesList recipes={this.state.recipes} />
+
+                    </Container>
+                </Col>
+            </Row>
             
             </>
         )

@@ -60,7 +60,9 @@ class DoughnutChart extends Component {
     }
 
     render() {
+
         const nutrientsOnly = this.props.data.map(elm => elm).splice(1)
+    
         return (
             <>
             <h6>Nutrients</h6>

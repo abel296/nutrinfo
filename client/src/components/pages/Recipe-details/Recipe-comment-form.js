@@ -24,7 +24,10 @@ class RecipeCommentForm extends Component {
         
         this.commentsService
             .createComment(this.props.param, this.state)
-            .then(() => this.props.refreshList())
+            .then(() => {
+                this.setState({text: ''}, () => this.props.refreshList())
+                
+            })
             .catch(err => console.log(err))
     }
     
@@ -35,7 +38,7 @@ class RecipeCommentForm extends Component {
             <Form onSubmit={e => this.handleSubmit(e)}>
                 <Form.Group controlId="commentTextArea">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control as="textarea" rows={3} type='text' name='text' value={this.state.comment} onChange={e => this.handleInputChange(e)} />
+                    <Form.Control as="textarea" rows={3} type='text' name='text' value={this.state.text} onChange={e => this.handleInputChange(e)} />
                 </Form.Group>
                 <Button variant="dark" type="submit">
                     Submit

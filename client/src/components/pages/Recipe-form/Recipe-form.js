@@ -88,11 +88,15 @@ class RecipeForm extends Component {
 
             } , [{label:'Energy',quantity: 0, unit:'kcal'},{label:'Fat',quantity: 0, unit:'g'},{label:'Carbs',quantity: 0, unit:'g'},{label:'Protein',quantity: 0, unit:'kcal'}])
            
-            // const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
-            //     const newAcc = [...acc]
-            //     acc.forEach( label => !eachIng.healthLabels.includes(label) && newAcc.splice(idx, 1) )
-            //     return newAcc
-            // }, allIngredients[0].healthLabels)
+            const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
+                const newAcc = [...acc]
+                
+                acc.forEach( label => {
+                    !eachIng.healthLabels.includes(label) && newAcc.splice(idx, 1)} )
+                return newAcc
+            }, allIngredients[0].healthLabels)
+
+            console.log(labelsArr)
 
             this.setState({recipe: {...this.state.recipe, nutrients: nutrientsArr}})
             return null
