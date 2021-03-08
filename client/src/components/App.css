@@ -20,6 +20,8 @@ img {
   background-color: #343a40;
 }
 
+
+
 .button {
     margin-top: 30px;
     font-size: 1.2em;
@@ -51,6 +53,20 @@ img {
 .button.button-white.button-transparent:hover {
     background-color: white;
     color: black;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0 6px rgb(243, 243, 243); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 0 6px rgb(201, 201, 201); 
 }
 
 

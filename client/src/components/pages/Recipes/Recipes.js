@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import RecipeService from '../../../service/recipes.service'
 import RecipesList from './RecipesList'
+import LabelsFilter from './LabelsFilter'
 
 import {Container, Col, Row} from 'react-bootstrap'
+import './Recipes.css'
 
 class Recipes extends Component {
 
@@ -12,7 +14,6 @@ class Recipes extends Component {
             recipes: []
         }
 
-        
 
         this.recipeService = new RecipeService()
     }
@@ -29,16 +30,31 @@ class Recipes extends Component {
             .catch(err => console.log(err))
     }
 
+    filterRecipes(labelsArr) {
+
+        this.recipeService
+            .getRecipes()
+            .then(allRecipes => {
+                const filteredRecipes = allRecipes.data.filter(recipe => labelsArr.every(label => recipe.labels?.includes(label)))
+                this.setState({recipes: filteredRecipes})
+            })
+            .catch(err => console.log(err))
+
+        
+    }
+
 
     render() {
 
         return(
             <>
-            <Row>
-                <Col xl={2}>
+            <Row className='recipes-section'>
+                <Col lg={2} md={3} xs={12}>
+
+                    <LabelsFilter filter={(labelsArr)=>this.filterRecipes(labelsArr)} />
 
                 </Col>
-                <Col xl={10}>
+                <Col lg={10} md={9} xs={12}>
                     <Container>
 
                         <h1>Recipes</h1>
