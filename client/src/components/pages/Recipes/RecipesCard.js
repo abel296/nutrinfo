@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
 import { Col, Card } from 'react-bootstrap'
+import './RecipeCard.css'
 
 const RecipeCard = ({image, title, _id}) => {
     return (
         <Col lg={4}>
             <Card>
-                <Card.Img variant="top" src={image?.url}/>
+            <div className='card-image-wrapper'>
+                <Card.Img className='card-image' variant="top" src={image?.url}/>
+            </div>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Link to={`/recipe-details/${_id}`} className='button button-small'>See details</Link> 

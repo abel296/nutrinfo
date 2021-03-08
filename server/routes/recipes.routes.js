@@ -11,7 +11,7 @@ router.post('/createRecipe', checkLoggedIn, (req, res) => {
     Recipe
         .create(recipe)
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: 'Error saving recipe into DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error saving recipe into DB', err }))
 })
 
 

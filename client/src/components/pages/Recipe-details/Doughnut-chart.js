@@ -32,6 +32,8 @@ class DoughnutChart extends Component {
                 let width = chart.chart.width,
                     height = chart.chart.height,
                     ctx = chart.chart.ctx;
+                
+                ctx.clearRect(0 , 0, width, height)
           
                 ctx.restore();
                 const fontSize = (height / 150).toFixed(2);
@@ -68,8 +70,8 @@ class DoughnutChart extends Component {
             <canvas ref={this.chartRef} />
           
             <ul>
-                {nutrientsOnly.map(elm => {
-                    return <li>{elm.quantity.toFixed(2)} {elm.unit} {elm.label}</li>
+                {nutrientsOnly.map((elm, idx) => {
+                    return <li key={idx} >{elm.quantity.toFixed(2)} {elm.unit} {elm.label}</li>
                 })}
             </ul>
             </>

@@ -8,7 +8,7 @@ import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
 const RecipeIngredients = ({image, ingredients, labels, diet,nutrients}) => {
     return (
         <Row>
-            <Col m d={6}>
+            <Col md={6}>
                 {image && <img src={image.url} alt={image.alt} />}
                 
                 

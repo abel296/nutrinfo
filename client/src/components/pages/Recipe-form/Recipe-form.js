@@ -24,7 +24,7 @@ class RecipeForm extends Component {
                 servings: 0,
                 // diet: [],
                 // rating: [],
-                // labels: [],
+                labels: [],
             },
             ingToPush: {
                 name: '',
@@ -86,15 +86,24 @@ class RecipeForm extends Component {
 
                 return acc
 
-            } , [{label:'Energy',quantity: 0, unit:'kcal'},{label:'Fat',quantity: 0, unit:'g'},{label:'Carbs',quantity: 0, unit:'g'},{label:'Protein',quantity: 0, unit:'kcal'}])
+            } , [{label:'Energy',quantity: 0, unit:'kcal'},{label:'Fat',quantity: 0, unit:'g'},{label:'Carbs',quantity: 0, unit:'g'},{label:'Protein',quantity: 0, unit:'g'}])
            
-            // const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
-            //     const newAcc = [...acc]
-            //     acc.forEach( label => !eachIng.healthLabels.includes(label) && newAcc.splice(idx, 1) )
-            //     return newAcc
-            // }, allIngredients[0].healthLabels)
+            const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
+                console.log('ACUMULADOR', acc)
+                console.log('LABELS INGREDIENTE NUEVO', eachIng.healthLabels)
+                const arrAccLabels = []
+                acc.forEach(label => {
+                    if (eachIng.healthLabels.includes(label)) {
+                        
+                        arrAccLabels.push(label)
+                    }
+                })
+                return arrAccLabels
+            }, allIngredients[0].healthLabels)
 
-            this.setState({recipe: {...this.state.recipe, nutrients: nutrientsArr}})
+            console.log(labelsArr)
+
+            this.setState({recipe: {...this.state.recipe, nutrients: nutrientsArr, labels: labelsArr}})
             return null
         })
         .then(() => {
@@ -235,7 +244,7 @@ class RecipeForm extends Component {
 
                         <Col Col >
                             <ListGroup variant="flush">
-                                    {this.state.recipe.ingredients?.map(elm =><ListGroup.Item>{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
+                                    {this.state.recipe.ingredients?.map((elm, idx) =><ListGroup.Item key={idx} >{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
                             </ListGroup>
                         </Col>
                         </Form.Group>
@@ -259,7 +268,7 @@ class RecipeForm extends Component {
 
                             <Col Col >
                                 <ListGroup variant="flush">
-                                        {this.state.recipe.steps?.map(elm =><ListGroup.Item>{elm.number} {elm.step}</ListGroup.Item>)}   
+                                        {this.state.recipe.steps?.map((elm, idx) =><ListGroup.Item key={idx} >{elm.number} {elm.step}</ListGroup.Item>)}   
                                 </ListGroup>
                             </Col>
                         </Form.Group>
