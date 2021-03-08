@@ -1,0 +1,24 @@
+
+
+.labels {
+    height: 75vh;
+    padding: 0 15px;
+}
+
+.labels input {
+    width: 100%;
+    font-size: 0.7em;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.labels .label {
+    margin: 0 0 10px 0;
+    padding: 0 0 0 10px;
+}
+
+.labels input.active {
+    color: white;
+    background-color: black;
+}

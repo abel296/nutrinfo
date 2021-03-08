@@ -1,6 +1,7 @@
 import React from 'react'
 import { Component } from 'react'
 import Chart from 'chart.js'
+import {Row, Col} from 'react-bootstrap'
 
 
 class DoughnutChart extends Component {
@@ -67,15 +68,20 @@ class DoughnutChart extends Component {
     
         return (
             <>
-            <h6>Nutrients</h6>
+            
             
             <canvas ref={this.chartRef} />
+
+            <Row className="justify-content-around nutrients-row">
           
-            <ul>
                 {nutrientsOnly.map((elm, idx) => {
-                    return <li key={idx} >{elm.quantity.toFixed(2)} {elm.unit} {elm.label}</li>
+                    return (
+                        <Col sm={4}  key={idx} >
+                            <p className='nutrients-data'><strong>{elm.label}</strong>: {elm.quantity.toFixed(2)} {elm.unit}</p>
+                        </Col>
+                    )
                 })}
-            </ul>
+            </Row>
             </>
         )
     }
