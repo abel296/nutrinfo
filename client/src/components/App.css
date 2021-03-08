@@ -2,6 +2,10 @@ img {
     width: 100%
 }
 
+main {
+  min-height: 85vh;
+}
+
 .navigation-bar {
   font-size: 1.2em;
   padding: 18px;
@@ -19,8 +23,6 @@ img {
 .dropdown-menu.show {
   background-color: #343a40;
 }
-
-
 
 .button {
     margin-top: 30px;

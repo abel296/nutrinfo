@@ -1,0 +1,21 @@
+.health-labels {
+    margin: 5px;
+    font-size: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px;
+    width: 100%;
+    text-align: center;
+}
+
+/* .nutrients-row {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 0.9em;
+} */
+
+.nutrients-data {
+    margin: 20px;
+    list-style: none;
+    width: 100%;
+}

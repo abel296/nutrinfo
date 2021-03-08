@@ -12,7 +12,7 @@ router.get('/getRecipeComments/:id', checkLoggedIn, checkMongoId, (req, res) => 
         .populate('owner')
         .sort({createdAt: -1})
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: 'Error getting comments from DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error getting comments from DB', err }))
 })
 
 router.post('/createComment/:id', checkLoggedIn, checkMongoId, (req, res) => {

@@ -20,7 +20,7 @@ router.get('/getAllRecipes', (req, res) => {
     Recipe
         .find()
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: 'Error gettin all recipes from DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error gettin all recipes from DB', err }))
 })
 
 
@@ -31,7 +31,7 @@ router.get('/getOneRecipe/:id', checkLoggedIn, checkMongoId, (req, res) => {
     Recipe
         .findById(recipe_id)
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: 'Error getting recipe from DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error getting recipe from DB', err }))
 })
 
 
@@ -42,7 +42,7 @@ router.get('/getRecipesByUser/:id', checkLoggedIn, checkMongoId, (req, res) => {
     Recipe
         .find({owner: user_id})
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: `Error getting user's recipes from DB`, err }))
+        .catch(err => res.status(500).json({ message: `Error getting user's recipes from DB`, err }))
 })
 
 
@@ -53,7 +53,7 @@ router.delete('/deleteRecipe/:id', checkLoggedIn, checkMongoId, (req, res) => {
     Recipe
         .findByIdAndRemove(recipe_id)
         .then(response => response ? res.json({status: 200, message: 'Recipe deleted succesfully'}) : res.json({status: 404, message: 'Recipe not found'}))
-        .catch(() => res.status(500).json({ message: 'Error removing recipe from DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error removing recipe from DB', err }))
 })
 
 
@@ -64,7 +64,7 @@ router.put('/editRecipe/:id', checkLoggedIn, checkMongoId, (req, res) => {
     Recipe
         .findByIdAndUpdate(recipe_id, recipe, {new: true})
         .then(response => res.json(response))
-        .catch(() => res.status(500).json({ message: 'Error editing recipe in DB', err }))
+        .catch(err => res.status(500).json({ message: 'Error editing recipe in DB', err }))
 })
 
 
