@@ -56,6 +56,8 @@ router.put('/edit/:id', checkLoggedIn, checkMongoId, (req, res) => {
     const hashPass = bcrypt.hashSync(password, salt)
     const user_id = req.params.id
 
+    console.log(req.body)
+
     User
         .findByIdAndUpdate(user_id, {username, image, password: hashPass})
         .then(user => res.json(user))

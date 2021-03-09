@@ -12,7 +12,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    image: String,
+    image: {
+        url: String,
+        alt: String
+    },
     fav_recipes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Recipe"
