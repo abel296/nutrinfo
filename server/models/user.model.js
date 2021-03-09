@@ -13,8 +13,14 @@ const userSchema = new Schema({
         required: true
     },
     image: {
-        url: String,
-        alt: String
+        url: {
+            type: String,
+            default: 'https://cdn.pixabay.com/photo/2014/04/03/00/42/chef-hat-309146_960_720.png'
+        },
+        alt: {
+            type: String,
+            default: 'chef hat'
+        },
     },
     fav_recipes: [{
         type: mongoose.Schema.Types.ObjectId,

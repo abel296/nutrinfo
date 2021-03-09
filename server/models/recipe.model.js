@@ -11,7 +11,10 @@ const recipeSchema = new Schema({
             type: String,
             default: 'https://masquevinilo.com/5324-thickbox_default/vinilo-decorativo-verduras-a-la-sarten.jpg'
         },
-        alt: String
+        alt: {
+            type: String,
+            default: 'frying pan with vegetables'
+        },
     },
     ingredients: {
         type: [{

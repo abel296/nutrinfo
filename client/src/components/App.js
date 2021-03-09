@@ -46,14 +46,10 @@ class App extends Component {
     return(
       <>
       <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
-      {this.state.loggedUser !== undefined
-      ? 
+
       <main>
         <Routes storeUser={user => this.storeUser(user) } loggedUser={this.state.loggedUser} handleAlert={this.handleAlert} refreshUser={() => this.fetchUser()} />
       </main>
-      :
-      <p>tranqui</p>
-      }
 
       <Footer />
       <Alert handleAlert={this.handleAlert} show={this.state.alert.show} title={this.state.alert.title} text={this.state.alert.text}/>
