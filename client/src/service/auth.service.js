@@ -11,7 +11,7 @@ class AuthService {
 
     signup = userData => this.api.post('/signup', userData)
     login = userData => this.api.post('/login', userData)
-    editUser = userId => this.api.edit(`/edit/${userId}`)
+    editUser = (userId, userData) => this.api.put(`/edit/${userId}`, userData)
     isLoggedIn = () => this.api.get('/loggedin')
     logOut = () => this.api.post('/logout')
 }

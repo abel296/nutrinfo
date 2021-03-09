@@ -44,7 +44,9 @@ const Navigation = ({storeUser, loggedUser}) => {
                             </>
                             :
                             <>
+                            <img className='nav-img' src={loggedUser.image.url} alt={loggedUser.image.alt}></img>
                             <NavLink to='/profile'>
+                                
                                 <Nav.Link as='span'>{loggedUser.username}</Nav.Link>
                             </NavLink>
 

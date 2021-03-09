@@ -39,18 +39,19 @@ class Profile extends Component {
         return (
             <Container>
                 
-                <Row>
+                <Row className='justify-content-md-center'>
 
                     <Col className='avatar-section'>
-                        {/* <img src={this.props.loggedUser.image} alt=''></img> */}
-                        <Link to={'#'} className='button button-small' >Edit Profile</Link>
+                        <img src={this.props.loggedUser.image.url} alt={this.props.loggedUser.image.alt}></img>
+                        <header>
+                            <h1>Hi, {this.props.loggedUser.username}! </h1>
+                        </header>
+                        <Link to={`edit-user/${this.props.loggedUser._id}`} className='button button-small' >Edit Profile</Link>
                     </Col>
     
                     <Col xl={9}>
     
-                        <header>
-                            <h1>Hi, {this.props.loggedUser.username}! </h1>
-                        </header>
+                        
                         <h2>My recipes</h2>
 
                         <Button onClick={() => this.togglemodalForm(true)} className='new-recipe-btn' variant="dark">New Recipe</Button>

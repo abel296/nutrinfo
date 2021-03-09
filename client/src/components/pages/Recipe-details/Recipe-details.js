@@ -47,10 +47,16 @@ class RecipeDetails extends Component {
         Promise
             .all([recipe, comments, ratings])
             .then(responses => {
-                const ratingsSum = responses[2].data.reduce((acc, elm) => acc + elm.rating, 0)
-                const ratingsAverage = (ratingsSum/responses[2].data.length).toFixed(2)
+                if (responses[0].data.message) {
+                    
+                    this.props.handleAlert(true, 'Error', responses[0].data.message)
+                    this.props.history.push('/recipes')  
+                } else {
+                    const ratingsSum = responses[2]?.data.reduce((acc, elm) => acc + elm.rating, 0)
+                    const ratingsAverage = (ratingsSum/responses[2]?.data.length).toFixed(2)
 
-                this.setState({recipe: responses[0].data, recipeComments: responses[1].data, recipeRating: ratingsAverage})
+                    this.setState({recipe: responses[0]?.data, recipeComments: responses[1]?.data, recipeRating: ratingsAverage})
+                }
             })
             .catch(err => console.log(err))
     }

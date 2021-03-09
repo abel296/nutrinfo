@@ -78,47 +78,56 @@ class RecipeForm extends Component {
        
         Promise.all(promisesArr)
         .then(allIngredients => {
-            const nutrientsArr = allIngredients.reduce((acc, elm) => {
 
-                acc[0].quantity += elm.totalNutrients.ENERC_KCAL.quantity
-                acc[1].quantity += elm.totalNutrients.FAT.quantity
-                acc[2].quantity += elm.totalNutrients.CHOCDF.quantity
-                acc[3].quantity += elm.totalNutrients.PROCNT.quantity
+            if(allIngredients.some(elm => !elm.totalNutrients.ENERC_KCAL)) {
 
-                return acc
+                return false
 
-            } , [{label:'Energy',quantity: 0, unit:'kcal'},{label:'Fat',quantity: 0, unit:'g'},{label:'Carbs',quantity: 0, unit:'g'},{label:'Protein',quantity: 0, unit:'g'}])
-           
-            const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
-                console.log('ACUMULADOR', acc)
-                console.log('LABELS INGREDIENTE NUEVO', eachIng.healthLabels)
-                const arrAccLabels = []
-                acc.forEach(label => {
-                    if (eachIng.healthLabels.includes(label)) {
-                        
-                        arrAccLabels.push(label)
-                    }
-                })
-                return arrAccLabels
-            }, allIngredients[0].healthLabels)
+            } else {
 
-            console.log(labelsArr)
+                const nutrientsArr = allIngredients.reduce((acc, elm) => {
 
-            this.setState({recipe: {...this.state.recipe, nutrients: nutrientsArr, labels: labelsArr}})
-            return null
+                    acc[0].quantity += elm.totalNutrients.ENERC_KCAL.quantity
+                    acc[1].quantity += elm.totalNutrients.FAT.quantity
+                    acc[2].quantity += elm.totalNutrients.CHOCDF.quantity
+                    acc[3].quantity += elm.totalNutrients.PROCNT.quantity
+
+                    return acc
+
+                } , [{label:'Energy',quantity: 0, unit:'kcal'},{label:'Fat',quantity: 0, unit:'g'},{label:'Carbs',quantity: 0, unit:'g'},{label:'Protein',quantity: 0, unit:'g'}])
+            
+                const labelsArr =  allIngredients.reduce((acc, eachIng, idx) => {
+                
+                    const arrAccLabels = []
+                    acc.forEach(label => {
+                        if (eachIng.healthLabels.includes(label)) {
+
+                            arrAccLabels.push(label)
+                            
+                        }
+                    })
+                    return arrAccLabels
+                }, allIngredients[0].healthLabels)
+
+                this.setState({recipe: {...this.state.recipe, nutrients: nutrientsArr, labels: labelsArr}})
+                return true
+            }
         })
-        .then(() => {
+        .then((response) => {
 
-            const user_id = this.props.loggedUser._id
-    
-            this.recipeService
-                .createRecipe({...this.state.recipe, owner: user_id})
-                .then(() => {
-                    this.props.closeModal()
-                    this.props.refreshList()
-                    this.props.handleAlert(true, 'Registration saved', 'The recipe has been saved into our Database')
-                })
-                .catch(err => console.log(err))
+            if (response) {
+
+                const user_id = this.props.loggedUser._id
+                return this.recipeService.createRecipe({...this.state.recipe, owner: user_id})
+                    
+            } else {return false}
+        })
+        .then(response => {
+            if (response) {
+                this.props.closeModal()
+                this.props.refreshList()
+                this.props.handleAlert(true, 'Registration saved', 'The recipe has been saved into our Database')
+            } else {this.props.handleAlert(true, 'Error', "Some of the ingredients doesn't exist")}
         })
         .catch(err => console.log(err))
 
@@ -203,6 +212,20 @@ class RecipeForm extends Component {
             .catch(err => console.log(err))
     }
 
+    deleteIngredient(idx) {
+
+        const ingredientsCopy = [...this.state.recipe.ingredients]
+        ingredientsCopy.splice(idx, 1)
+        this.setState({recipe: {...this.state.recipe, ingredients: ingredientsCopy}})
+        
+    }
+
+    deleteStep(idx) {
+        const stepsCopy = [...this.state.recipe.steps]
+        stepsCopy.splice(idx, 1)
+        this.setState({recipe: {...this.state.recipe, steps: stepsCopy}})
+    }
+
     render() {
         return(
             <Container>
@@ -249,7 +272,14 @@ class RecipeForm extends Component {
 
                         <Col Col >
                             <ListGroup variant="flush">
-                                    {this.state.recipe.ingredients?.map((elm, idx) =><ListGroup.Item key={idx} >{elm.name} {elm.quantity}{elm.unit}</ListGroup.Item>)}   
+                                    {this.state.recipe.ingredients?.map((elm, idx) =>
+                                    <>
+                                    <ListGroup.Item key={idx} >
+                                    {elm.name} {elm.quantity}{elm.unit} 
+                                    <Button variant='danger' onClick={() => this.deleteIngredient(idx)}>Remove ingredient</Button>
+                                    </ListGroup.Item>
+                                    </>
+                                    )}   
                             </ListGroup>
                         </Col>
                         </Form.Group>
@@ -273,7 +303,10 @@ class RecipeForm extends Component {
 
                             <Col Col >
                                 <ListGroup variant="flush">
-                                        {this.state.recipe.steps?.map((elm, idx) =><ListGroup.Item key={idx} >{elm.number} {elm.step}</ListGroup.Item>)}   
+                                        {this.state.recipe.steps?.map((elm, idx) =>
+                                        <ListGroup.Item key={idx} >{elm.number} {elm.step}
+                                        <Button variant='danger' onClick={() => this.deleteStep(idx)}>Remove step</Button>
+                                        </ListGroup.Item>)}   
                                 </ListGroup>
                             </Col>
                         </Form.Group>
