@@ -14,3 +14,7 @@
     display: block;
 
 }
+
+.modal-dialog {
+    max-width: 800px;
+  }

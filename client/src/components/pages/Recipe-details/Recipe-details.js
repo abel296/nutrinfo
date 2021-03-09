@@ -9,6 +9,7 @@ import RecipeIngredients from './Recipe-ingredients'
 import RecipeSteps from './Recipe-steps'
 import Rating from './Recipe-rating'
 import RecipeCommentForm from './Recipe-comment-form'
+import Spinner from './../../shared/Spinner/Spinner'
 
 import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
 
@@ -89,12 +90,16 @@ class RecipeDetails extends Component {
                     <RecipeComments recipeComments = {this.state.recipeComments} />
                 
 
+                    <Link to='/recipes' className='btn btn-dark'>Go back</Link>
                 </>
                 :
-            
-            <p>not yet</p>
+                <>
+                    <div className='spinner-div'>
+                        <Spinner></Spinner>
+                    </div>
+
+                </>
             }
-            <Link to='/recipes' className='btn btn-dark'>Go back</Link>
 
             </Container>
         )
