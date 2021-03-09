@@ -5,3 +5,7 @@
 .avatar-section {
     margin-bottom: 20px;
 }
+
+.modal-dialog {
+    max-width: 800px;
+  }

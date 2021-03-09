@@ -14,10 +14,10 @@ const Routes = ({storeUser, loggedUser, handleAlert}) => {
         <Switch>
             <Route path="/" exact render={() => <Home />} />
             <Route path="/recipes" render={() => <Recipes />} />
-            <Route path="/recipe-details/:recipe_id" render={(props) => <RecipeDetails {...props} loggedUser={loggedUser} />} />
+            <Route path="/recipe-details/:recipe_id" render={(props) => <RecipeDetails {...props} loggedUser={loggedUser} handleAlert={handleAlert} />} />
             <Route path="/profile" render={() => <Profile loggedUser={loggedUser} handleAlert={handleAlert} />} />
-            <Route path="/signup" render={props => <Signup storeUser={storeUser} {...props} />} />
-            <Route path="/login" render={props => <Login storeUser={storeUser} {...props} />} />
+            <Route path="/signup" render={props => <Signup storeUser={storeUser} {...props} handleAlert={handleAlert} />} />
+            <Route path="/login" render={props => <Login storeUser={storeUser} {...props} handleAlert={handleAlert} />} />
         </Switch>
         </>
     )

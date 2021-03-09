@@ -2,6 +2,7 @@ import { Component } from 'react'
 import RecipeService from '../../../service/recipes.service'
 import RecipesList from './RecipesList'
 import LabelsFilter from './LabelsFilter'
+import Spinner from './../../shared/Spinner/Spinner'
 
 import {Container, Col, Row} from 'react-bootstrap'
 import './Recipes.css'
@@ -11,7 +12,7 @@ class Recipes extends Component {
     constructor() {
         super()
         this.state = {
-            recipes: []
+            recipes: undefined
         }
 
 
@@ -47,7 +48,11 @@ class Recipes extends Component {
     render() {
 
         return(
+
             <>
+            {this.state.recipes
+                ?
+                <>
             <Row className='recipes-section'>
                 <Col lg={2} md={3} xs={12}>
 
@@ -64,7 +69,17 @@ class Recipes extends Component {
                     </Container>
                 </Col>
             </Row>
-            
+                </>
+                :
+                <>
+
+            <div className='spinner-div'>
+                <Spinner></Spinner>
+            </div>
+
+                </>
+            }
+
             </>
         )
     }

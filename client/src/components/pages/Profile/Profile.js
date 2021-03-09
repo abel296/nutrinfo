@@ -61,7 +61,7 @@ class Profile extends Component {
     
                 </Row>
 
-                <Modal className='modal' show={this.state.showForm} onHide={() => this.togglemodalForm(false)}>
+                <Modal show={this.state.showForm} onHide={() => this.togglemodalForm(false)}>
                     <Modal.Header closeButton>
                         <Modal.Title>New recipe</Modal.Title>
                     </Modal.Header>

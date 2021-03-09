@@ -14,8 +14,8 @@ class RecipeForm extends Component {
         this.state = {
             recipe: {
                 image: {
-                    url: '',
-                    alt: ''
+                    url: 'https://masquevinilo.com/5324-thickbox_default/vinilo-decorativo-verduras-a-la-sarten.jpg',
+                    alt: 'frying pan with vegetables'
                 },
                 title: '',
                 ingredients: [],
@@ -113,10 +113,11 @@ class RecipeForm extends Component {
     
             this.recipeService
                 .createRecipe({...this.state.recipe, owner: user_id})
-                .then(() => {
+                .then(newRecipe => {
                     this.props.closeModal()
                     this.props.refreshList()
                     this.props.handleAlert(true, 'Registration saved', 'The recipe has been saved into our Database')
+                    console.log(newRecipe)
                 })
                 .catch(err => console.log(err))
         })
@@ -196,7 +197,7 @@ class RecipeForm extends Component {
                     isUploading: false,
                     recipe: {...this.state.recipe, image: {
                         url: response.data.secure_url,
-                        alt: response.data.secure_url
+                        alt: this.state.recipe.title
                     }} 
                 })
             })
@@ -214,7 +215,7 @@ class RecipeForm extends Component {
                     </Form.Group>
                     <Form.Group>
                         <Row>
-                            <Col >
+                            <Col md={{span: 5}}>
                                 <Form.Label>Ingredient</Form.Label>                            
                                 <Form.Control type="text" name="name" value={this.state.ingToPush.name} onChange={e => this.handleIngredientInputChange(e)}/>
                             </Col>
@@ -242,7 +243,7 @@ class RecipeForm extends Component {
                                 </Form.Control>
                             </Col>
 
-                            <Col className='add-ing-btn' md={{span: 2}}>
+                            <Col className='add-ing-btn' md={{span: 3}}>
                                 <Button onClick={() => this.addIngredient()} variant="dark"  type="button">Add ingredient</Button>
                             </Col>
                         </Row>
@@ -266,7 +267,7 @@ class RecipeForm extends Component {
                                 <Form.Control type="text" name="step" value={this.state.stepToPush.step} onChange={e => this.handleStepInputChange(e)}/>
                             </Col>
 
-                            <Col className='add-step-btn' md={{span: 2}}>
+                            <Col className='add-step-btn' md={{span: 3}}>
                                 <Button onClick={() => this.addStep()} variant="dark"  type="button">Add step</Button>
                             </Col>
                         </Row>
@@ -295,7 +296,7 @@ class RecipeForm extends Component {
                             <Form.Control type="file" name="imageUrl" onChange={e => this.handleFileUpload(e)} />
                         </Form.Group>                     
                     
-                    <Button variant="dark" block type="submit">New Recipe</Button>
+                    <Button variant="dark" block type="submit" disabled={this.state.isUploading}>{this.state.isUploading ? 'Waiting, uploading...' : 'New Recipe'}</Button>
                     
                 </Form>
             </Container>
