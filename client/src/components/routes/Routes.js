@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Home from '../pages/Home/Home'
 import Recipes from '../pages/Recipes/Recipes'
@@ -16,7 +16,7 @@ const Routes = ({storeUser, loggedUser, handleAlert, refreshUser}) => {
             <Route path="/" exact render={() => <Home />} />
             <Route path="/recipes" render={() => <Recipes />} />
             <Route path="/recipe-details/:recipe_id" render={(props) => <RecipeDetails {...props} loggedUser={loggedUser} handleAlert={handleAlert} />} />
-            <Route path="/profile" render={() => <Profile loggedUser={loggedUser} handleAlert={handleAlert} />} />
+            <Route path="/profile" render={() => loggedUser?<Profile loggedUser={loggedUser} handleAlert={handleAlert}  />: <Redirect to='/profile' /> } />
             <Route path="/edit-user/:user_id" render={(props) => <UserForm {...props} loggedUser={loggedUser} refreshUser={refreshUser} />} />
             <Route path="/signup" render={props => <Signup storeUser={storeUser} {...props} handleAlert={handleAlert} />} />
             <Route path="/login" render={props => <Login storeUser={storeUser} {...props} handleAlert={handleAlert} />} />
