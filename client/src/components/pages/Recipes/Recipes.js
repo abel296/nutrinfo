@@ -3,6 +3,7 @@ import RecipeService from '../../../service/recipes.service'
 import RecipesList from './RecipesList'
 import LabelsFilter from './LabelsFilter'
 import Spinner from './../../shared/Spinner/Spinner'
+import magnifyingGlassImg from './magnifying-glass.png'
 
 import {Container, Col, Row} from 'react-bootstrap'
 import './Recipes.css'
@@ -53,23 +54,44 @@ class Recipes extends Component {
             {this.state.recipes
                 ?
                 <>
-            <Row className='recipes-section'>
-                <Col lg={2} md={3} xs={12}>
+                
+                
+                    <Row className='recipes-section'>
+                        <Col lg={2} md={3} xs={12}>
 
-                    <LabelsFilter filter={(labelsArr)=>this.filterRecipes(labelsArr)} />
+                            <LabelsFilter filter={(labelsArr)=>this.filterRecipes(labelsArr)} />
 
-                </Col>
-                <Col lg={10} md={9} xs={12}>
+                        </Col>
+                    {this.state.recipes[0]
+                    ?
+                        <Col lg={10} md={9} xs={12}>
+                            <Container>
+
+                                <h1>Recipes</h1>
+                                
+                                <RecipesList recipes={this.state.recipes} />
+
+                            </Container>
+                        </Col>
+                    
+                    :
                     <Container>
 
-                        <h1>Recipes</h1>
-                        
-                        <RecipesList recipes={this.state.recipes} />
+                        <Row className='justify-content-center'>
+                            <Col md={7}>
+
+                                <h5>The filters you applied doesn't match with any recipe</h5>
+                                <img className='glass-img' src={magnifyingGlassImg} alt='Magnifying glass logo' />
+
+                            </Col>
+                        </Row>
 
                     </Container>
-                </Col>
-            </Row>
+                   
+                }
+                    </Row>
                 </>
+                
                 :
                 <>
 
