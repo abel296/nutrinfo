@@ -18,7 +18,7 @@ const UserRecipeCard = ({image, title, _id, refreshList}) => {
 
 
     return (
-        <Col lg={4}>
+        <Col lg={4} md={6} xs={12}>
             <Card>
             <div className='card-image-wrapper'>
                 <Card.Img className='card-image' variant="top" src={image?.url}/>

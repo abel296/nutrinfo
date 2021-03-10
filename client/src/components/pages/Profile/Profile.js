@@ -37,30 +37,36 @@ class Profile extends Component {
     
     render () {
         return (
-            <Container>
+            <>
+
                 
                 <Row className='justify-content-md-center'>
-
-                    <Col className='avatar-section'>
-                        <img src={this.props.loggedUser.image.url} alt={this.props.loggedUser.image.alt}></img>
+          
+                    <Col lg={2} md={3} xs={4} className='avatar-section'>
+                    <Container>
+                    <Row className='avatar-row'>
+                        
+                        <img className='profile-img' src={this.props.loggedUser.image.url} alt={this.props.loggedUser.image.alt}></img>
                         <header>
                             <h1>Hi, {this.props.loggedUser.username}! </h1>
                         </header>
                         <Link to={`edit-user/${this.props.loggedUser._id}`} className='button button-small' >Edit Profile</Link>
+                        </Row>
+                        </Container>
                     </Col>
-    
-                    <Col xl={9}>
-    
+          
+                    <Col lg={12} md={9} xs={12}>
+                        <Container>
                         
                         <h2>My recipes</h2>
 
                         <Button onClick={() => this.togglemodalForm(true)} className='new-recipe-btn' variant="dark">New Recipe</Button>
 
                         <UserRecipesList userRecipes={this.state.userRecipes} refreshList={() => this.loadUserRecipes()} ></UserRecipesList>                        
-                        
+                        </Container>
                     </Col>
-    
                 </Row>
+    
 
                 <Modal show={this.state.showForm} onHide={() => this.togglemodalForm(false)}>
                     <Modal.Header closeButton>
@@ -70,9 +76,8 @@ class Profile extends Component {
                         <RecipeForm loggedUser={this.props.loggedUser} closeModal={() => this.togglemodalForm(false)} refreshList={() => this.loadUserRecipes()} handleAlert={this.props.handleAlert} />
                     </Modal.Body>
                 </Modal>
-    
-            </Container>
-            
+
+            </>
         )
     }
     
