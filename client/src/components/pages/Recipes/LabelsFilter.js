@@ -38,7 +38,7 @@ class LabelsFilter extends Component {
             <Row className='labels'>
             {this.allLabelsArr.map((elm, idx) => {
                 return (
-                    <Col className='label' md={12} xs={4} key={idx} >
+                    <Col className='label' md={12} sm={4} xs={6} key={idx} >
                     <input type='button' value={elm} onClick={(e)=>this.handleClick(e)} />
                     </Col>
                 )

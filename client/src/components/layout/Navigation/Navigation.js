@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import AuthService from '../../../service/auth.service'
 
-const Navigation = ({storeUser, loggedUser}) => {
+const Navigation = ({storeUser, loggedUser, refreshUser}) => {
 
     const authService = new AuthService()
 
@@ -12,7 +12,9 @@ const Navigation = ({storeUser, loggedUser}) => {
 
         authService
             .logOut()
-            .then(() => storeUser(undefined))
+            .then(() => {
+                storeUser(null)
+            })
             .catch(err => console.log({err}))
         
     }

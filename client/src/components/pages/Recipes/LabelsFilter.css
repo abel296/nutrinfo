@@ -1,11 +1,10 @@
 
 
 .labels {
-    height: 75vh;
     padding: 0 15px;
 }
 
-.labels input {
+.label input {
     width: 100%;
     font-size: 0.7em;
     font-weight: 600;

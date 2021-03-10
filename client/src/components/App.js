@@ -26,14 +26,14 @@ class App extends Component {
   }
 
   storeUser(loggedUser) {
-    this.setState({loggedUser}, () => console.log('Modified user', this.state.loggedUser))
+    this.setState({loggedUser}, () => console.log('Modified user', loggedUser))
   }
 
   fetchUser() {
     this.authService
     .isLoggedIn()
-    .then(response => this.storeUser(response.data))
-    .catch(() => this.storeUser(undefined))
+    .then(response => {this.storeUser(response.data)})
+    .catch(() => this.storeUser(null))
   }
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class App extends Component {
   render() {
     return(
       <>
-      <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
+      <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} refreshUser={() => this.fetchUser()} />
 
       <main>
         <Routes storeUser={user => this.storeUser(user) } loggedUser={this.state.loggedUser} handleAlert={this.handleAlert} refreshUser={() => this.fetchUser()} />
