@@ -10,12 +10,13 @@
 }
 
 .navigation-bar {
-    background-color: #01427c;
+    background-color: #EFEFEF;
+    border-bottom: 1px solid #008650;
 }
 
-/* .navigation-bar .nav-link {
-    color: white;
-} */
+.navbar-light .navbar-nav .nav-link {
+    color: #008650;
+}
 
 .links-nav {
     text-decoration: none;
@@ -23,4 +24,5 @@
 
 .user-nav {
     display: flex;
+    margin-left: 15px;
 }

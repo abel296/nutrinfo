@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
+  background-color: #EFEFEF;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -88,15 +89,22 @@ main {
 
 .btn {
   border-radius: 35px;
-  background-color: #01427c;
-  color: white;
+  background-color: #ffffff00;
+  color: #008650;
   transition: .5 ease;
-  border: none;
+  border: 1px solid #008650;
+}
+
+.btn.btn-dark:active
+{
+    background-color:#00ac67 !important; /* add here any color */
+    border: 1px solid #00ac67
 }
 
 .btn:hover {
-  background-color: #184c79;
+  background-color: #008650;
   color: white;
+  border: 1px solid #008650;
 }
 
 

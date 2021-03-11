@@ -30,6 +30,7 @@ router.get('/getOneRecipe/:id', checkLoggedIn, checkMongoId, (req, res) => {
 
     Recipe
         .findById(recipe_id)
+        .populate('owner')
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ message: 'Error getting recipe from DB', err }))
 })

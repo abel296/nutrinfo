@@ -5,7 +5,7 @@ import logo from './logo_small_icon_only_inverted.png'
 const Alert = ({handleAlert, show, title = 'System message', text}) => {
 
     return (
-        <Toast autohide show={show} onClose={() => handleAlert(false)} delay={3000} style={{zIndex: 9999, position: 'fixed', color: 'white', bottom: 38, right: 17, width: 400, backgroundColor:'#01427c'}}>
+        <Toast autohide show={show} onClose={() => handleAlert(false)} delay={3000} style={{zIndex: 9999, position: 'fixed', color: 'white', bottom: 38, right: 17, width: 400, backgroundColor:'#008650'}}>
             <Toast.Header>
                 <img
                     src={logo}

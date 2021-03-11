@@ -8,24 +8,26 @@
     width: 100%;
     font-size: 0.7em;
     font-weight: 600;
-    color: white;
-    background-color: #01427c;
+    color: #008650;
+    border: 1px solid #008650;
+    background-color: #01437c00;
     border-radius: 5px;
-    border: 0;
 }
+
 .labels .label {
     margin: 0 0 10px 0;
     padding: 0 0 0 10px;
 }
 
 .label input.active {
-    background-color: #f28b18;
+    background-color: #008650;
+    color: white;
 }
 
 .label input:hover{
-    background-color: #25537a;
+    background-color: rgba(0, 133, 78, 0.24);
 }
 
 .label input.active:hover {
-    background-color: #e99a40;
+    background-color: #005231;
 }
