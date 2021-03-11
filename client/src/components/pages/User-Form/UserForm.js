@@ -40,7 +40,10 @@ class UserForm extends Component {
                 const {username, password} = this.state.user
                 return this.authService.login({username, password})
             })
-            .then(() => this.props.refreshUser())
+            .then(() => {
+                this.props.refreshUser()
+                this.props.history.push('/profile')
+            })
             .catch(err => console.log(err))
     }
 

@@ -59,9 +59,9 @@ class Profile extends Component {
                         <Container>
                         
                         <h1>My recipes</h1>
-                            <di>
-                                <Button onClick={() => this.togglemodalForm(true)} className='new-recipe-btn' variant="dark">New Recipe</Button>
-                            </di>
+                            <div>
+                                <Button onClick={() => this.togglemodalForm(true)} className='new-recipe-btn'>New Recipe</Button>
+                            </div>
 
                         <UserRecipesList userRecipes={this.state.userRecipes} refreshList={() => this.loadUserRecipes()} ></UserRecipesList>                        
                         </Container>

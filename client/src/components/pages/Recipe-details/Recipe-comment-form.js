@@ -40,7 +40,7 @@ class RecipeCommentForm extends Component {
                     <Form.Label>Comment</Form.Label>
                     <Form.Control as="textarea" rows={3} type='text' name='text' value={this.state.text} onChange={e => this.handleInputChange(e)} />
                 </Form.Group>
-                <Button variant="dark" type="submit">
+                <Button type="submit">
                     Submit
                 </Button>
             </Form>
