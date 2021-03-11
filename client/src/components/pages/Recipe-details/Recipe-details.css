@@ -14,8 +14,31 @@
     font-size: 0.9em;
 } */
 
+.recipe-img {
+    height: 350px;
+    object-fit: cover;
+}
+
 .nutrients-data {
     margin: 20px;
     list-style: none;
     width: 100%;
+}
+
+
+
+.comment {
+    margin: 20px;
+}
+
+.comment img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.comment h6 {
+    display: inline;
+    margin-left: 10px;
 }
