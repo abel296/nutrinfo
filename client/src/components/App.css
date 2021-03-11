@@ -88,14 +88,14 @@ main {
 
 .btn {
   border-radius: 35px;
-  background-color: #01427c;
+  background-color: #01a865;
   color: white;
   transition: .5 ease;
   border: none;
 }
 
 .btn:hover {
-  background-color: #184c79;
+  background-color: #008650;
   color: white;
 }
 

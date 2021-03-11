@@ -9,7 +9,7 @@
     font-size: 0.7em;
     font-weight: 600;
     color: white;
-    background-color: #01427c;
+    background-color: #01a865;
     border-radius: 5px;
     border: 0;
 }
@@ -23,7 +23,7 @@
 }
 
 .label input:hover{
-    background-color: #25537a;
+    background-color: #008650;
 }
 
 .label input.active:hover {
