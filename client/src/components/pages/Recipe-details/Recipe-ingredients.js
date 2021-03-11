@@ -9,7 +9,7 @@ const RecipeIngredients = ({image, ingredients, labels, diet,nutrients}) => {
     return (
         <Row>
             <Col lg={6}>
-                {image && <img src={image.url} alt={image.alt} />}
+                {image && <img className='recipe-img' src={image.url} alt={image.alt} />}
                 
                 
                 <h5>Ingredients</h5>

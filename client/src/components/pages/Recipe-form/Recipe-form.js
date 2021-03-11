@@ -6,6 +6,7 @@ import UploadService from '../../../service/upload.service'
 import { Container, Form, Button, Row, Col, ListGroup} from 'react-bootstrap'
 import Spinner from '../../shared/Spinner/Spinner'
 import './Recipe-form.css'
+import close from './close.svg'
 
 class RecipeForm extends Component {
 
@@ -270,13 +271,13 @@ class RecipeForm extends Component {
                             </Col>
                         </Row>
 
-                        <Col Col >
+                        <Col className='item-col'>
                             <ListGroup variant="flush">
                                     {this.state.recipe.ingredients?.map((elm, idx) =>
                                     <>
-                                    <ListGroup.Item key={idx} >
+                                    <ListGroup.Item className='item-list' key={idx} >
                                     {elm.name} {elm.quantity}{elm.unit} 
-                                    <Button variant='danger' onClick={() => this.deleteIngredient(idx)}>Remove ingredient</Button>
+                                    <Button className='delete-button' variant='danger' onClick={() => this.deleteIngredient(idx)}><img src={close} alt='x icon' /></Button>
                                     </ListGroup.Item>
                                     </>
                                     )}   
@@ -301,11 +302,11 @@ class RecipeForm extends Component {
                             </Col>
                         </Row>
 
-                            <Col Col >
+                            <Col className='item-col' >
                                 <ListGroup variant="flush">
                                         {this.state.recipe.steps?.map((elm, idx) =>
-                                        <ListGroup.Item key={idx} >{elm.number} {elm.step}
-                                        <Button variant='danger' onClick={() => this.deleteStep(idx)}>Remove step</Button>
+                                        <ListGroup.Item className='item-list' key={idx} >{elm.number} {elm.step}
+                                        <Button className='delete-button' variant='danger' onClick={() => this.deleteStep(idx)}><img src={close} alt='x icon' /></Button>
                                         </ListGroup.Item>)}   
                                 </ListGroup>
                             </Col>

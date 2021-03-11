@@ -13,3 +13,20 @@
 .add-step-btn button {
     width: 100%;
 }
+
+.item-col {
+    padding: 0;
+}
+
+.item-list {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.delete-button {
+    float: right;
+}
+
+.delete-button img {
+    width: 20px;
+}
