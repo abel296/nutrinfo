@@ -1,6 +1,7 @@
 import { Navbar, Nav } from 'react-bootstrap'
 import "./Navigation.css"
 import { NavLink } from 'react-router-dom'
+import logo from './logo_white_large.png'
 
 import AuthService from '../../../service/auth.service'
 
@@ -20,9 +21,14 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
     }
 
     return (
-        <Navbar expand="lg" className='navigation-bar' bg="dark" variant="dark" style={{marginBottom: 30}}>
+        <Navbar expand="lg" className='navigation-bar'variant="dark" style={{marginBottom: 30}}>
             <NavLink to='/'>
-                <Navbar.Brand>Nutrinfo</Navbar.Brand>
+                <Navbar.Brand> <img 
+                    alt=""
+                    src={logo}
+
+                    className="d-inline-block align-top logo-nav"
+                />{' '}</Navbar.Brand>
             </NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
@@ -36,23 +42,23 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
                         !loggedUser
                             ?
                             <>
-                                <NavLink to='/signup'>
-                                    <Nav.Link as='span'>Signup</Nav.Link>
-                                </NavLink>
 
                                 <NavLink to='/login'>
-                                    <Nav.Link as='span'>Login</Nav.Link>
+                                    <Nav.Link className='links-nav' as='span'>Login</Nav.Link>
+                                </NavLink>
+                                <NavLink to='/signup'>
+                                    <Nav.Link as='span'>Signup</Nav.Link>
                                 </NavLink>
                             </>
                             :
                             <>
-                            <img className='nav-img' src={loggedUser.image.url} alt={loggedUser.image.alt}></img>
-                            <NavLink to='/profile'>
+                            <NavLink className='user-nav' to='/profile'>
+                                <img className='nav-img' src={loggedUser.image.url} alt={loggedUser.image.alt}></img>
                                 
                                 <Nav.Link as='span'>{loggedUser.username}</Nav.Link>
                             </NavLink>
 
-                            <Nav.Link as='span' onClick={() => logoutUser()} >Logout</Nav.Link>
+                            <Nav.Link onClick={() => logoutUser()} >Logout</Nav.Link>
                             </>
                     }
 

@@ -15,11 +15,11 @@ const userSchema = new Schema({
     image: {
         url: {
             type: String,
-            default: 'https://cdn.pixabay.com/photo/2014/04/03/00/42/chef-hat-309146_960_720.png'
+            default: 'https://res.cloudinary.com/abel-av/image/upload/v1615400298/nutrinfo/profile-default_ykw6zj.png'
         },
         alt: {
             type: String,
-            default: 'chef hat'
+            default: 'default profile'
         },
     },
     fav_recipes: [{

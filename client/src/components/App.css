@@ -24,14 +24,14 @@ main {
   background-color: #343a40;
 }
 
-.button {
+/* .button {
     margin-top: 30px;
     font-size: 1.2em;
     color: white;
-    border: 3px solid black;
+    border: 1px solid black;
     padding: 10px 40px;
     border-radius: 35px;
-    background-color: black;
+    background-color:#01427c;
     transition: 0.5s ease;
     font-weight: 700;
 }
@@ -55,9 +55,9 @@ main {
 .button.button-white.button-transparent:hover {
     background-color: white;
     color: black;
-}
+} */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 7px;
 }
 
@@ -69,11 +69,24 @@ main {
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 0 6px rgb(201, 201, 201); 
-}
+} */
 
 .spinner-div {
   display: flex;
   justify-content: center;
+}
+
+.btn {
+  border-radius: 35px;
+  background-color: #01427c;
+  color: white;
+  transition: .5 ease;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #184c79;
+  color: white;
 }
 
 

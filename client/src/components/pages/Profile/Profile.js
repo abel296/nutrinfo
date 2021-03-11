@@ -40,27 +40,28 @@ class Profile extends Component {
             <>
 
                 
-                <Row className='justify-content-md-center'>
+                <Row className='justify-content-center user-recipes'>
           
-                    <Col lg={2} md={3} xs={4} className='avatar-section'>
-                    <Container>
-                    <Row className='avatar-row'>
-                        
-                        <img className='profile-img' src={this.props.loggedUser.image.url} alt={this.props.loggedUser.image.alt}></img>
-                        <header>
-                            <h1>Hi, {this.props.loggedUser.username}! </h1>
-                        </header>
-                        <Link to={`edit-user/${this.props.loggedUser._id}`} className='button button-small' >Edit Profile</Link>
-                        </Row>
+                    <Col lg={2} md={3} xs={4} className='avatar-section '>
+                        <Container>
+                            <Row className='avatar-row justify-content-center'>
+
+                            <header className='header'>
+                                <img className='profile-img' src={this.props.loggedUser.image.url} alt={this.props.loggedUser.image.alt}></img>
+                                <h1>Hi, {this.props.loggedUser.username}! </h1>
+                                <Link to={`edit-user/${this.props.loggedUser._id}`} className='btn edit-recipe-btn' >Edit Profile</Link>
+                            </header>
+                            </Row>
                         </Container>
                     </Col>
           
-                    <Col lg={12} md={9} xs={12}>
+                    <Col lg={12} md={12} xs={12}>
                         <Container>
                         
-                        <h2>My recipes</h2>
-
-                        <Button onClick={() => this.togglemodalForm(true)} className='new-recipe-btn' variant="dark">New Recipe</Button>
+                        <h1>My recipes</h1>
+                            <di>
+                                <Button onClick={() => this.togglemodalForm(true)} className='new-recipe-btn' variant="dark">New Recipe</Button>
+                            </di>
 
                         <UserRecipesList userRecipes={this.state.userRecipes} refreshList={() => this.loadUserRecipes()} ></UserRecipesList>                        
                         </Container>

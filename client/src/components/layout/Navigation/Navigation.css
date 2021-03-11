@@ -4,3 +4,23 @@
     object-fit: cover;
     border-radius: 50%;
 }
+
+.logo-nav {
+    width:150px;
+}
+
+.navigation-bar {
+    background-color: #01427c;
+}
+
+/* .navigation-bar .nav-link {
+    color: white;
+} */
+
+.links-nav {
+    text-decoration: none;
+}
+
+.user-nav {
+    display: flex;
+}

@@ -12,7 +12,7 @@ const Home = () => {
                         <Col>
                             <h1>Welcome to Nutrinfo</h1>
                             <h5>Get all the info you need from your own recipes!</h5>  
-                            <Link className='button button-white button-transparent' to='/signup'>Signup!</Link>
+                            <Link className='btn' to='/signup'>Signup!</Link>
                         </Col>
                     </Row>
                 </Container>

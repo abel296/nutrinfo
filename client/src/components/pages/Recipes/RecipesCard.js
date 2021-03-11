@@ -11,7 +11,7 @@ const RecipeCard = ({image, title, _id}) => {
             </div>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
-                    <Link to={`/recipe-details/${_id}`} className='button button-small'>See details</Link> 
+                    <Link to={`/recipe-details/${_id}`} className='btn'>See details</Link> 
                 </Card.Body>
             </Card>
         </Col>

@@ -25,8 +25,10 @@ const UserRecipeCard = ({image, title, _id, refreshList}) => {
             </div>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
-                    <Link to={`/recipe-details/${_id}`} className='button button-small'>See details</Link>
-                    <Button onClick={() => deleteUserCard()} variant="dark">Delete Recipe</Button>
+                    <div className='profile-btn'>
+                        <Link to={`/recipe-details/${_id}`} className='btn profile-details-btn'>See details</Link>
+                        <Button onClick={() => deleteUserCard()} variant="dark" className='profile-details-btn delete-btn'>Delete Recipe</Button>
+                    </div>
                 </Card.Body>
             </Card>
         </Col>
