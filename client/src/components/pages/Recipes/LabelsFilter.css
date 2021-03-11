@@ -31,3 +31,7 @@
 .label input.active:hover {
     background-color: #005231;
 }
+
+.ing-filter {
+    width: 100%;
+}

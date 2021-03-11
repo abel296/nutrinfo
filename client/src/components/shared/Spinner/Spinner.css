@@ -4,10 +4,10 @@
   border-radius: 50%;
   border-width: 4px;
   border-style: solid;
-  border-top-color: #f29b18;
-  border-left-color:#285a86;
-  border-right-color: #285a86;
-  border-bottom-color: #285a86;
+  border-top-color: #008650;
+  border-left-color:#a3a3a3;
+  border-right-color: #a3a3a3;
+  border-bottom-color: #a3a3a3;
   animation: spinner 1s infinite ease-in-out
 }
 

@@ -23,7 +23,7 @@ router.post('/createRating/:id', checkLoggedIn, checkMongoId, (req, res) => {
         .then(response => {
             const ratingsOwners = response.map(elm => elm.owner.toString())
             if (ratingsOwners.includes(user_id.toString())) {
-                res.status(500).json({ message: 'Recipe already rated'})
+                res.json({ message: 'Recipe already rated'})
             }else {
                 Rating
                     .create({owner: user_id, rating: req.body.rating, recipe: recipe_id})

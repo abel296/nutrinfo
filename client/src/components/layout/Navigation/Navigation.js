@@ -55,7 +55,7 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
                             <NavLink style={{textDecoration: 'none'}} className='user-nav' to='/profile'>
                                 <img className='nav-img' src={loggedUser.image.url} alt={loggedUser.image.alt}></img>
                                 
-                                <Nav.Link href='/profile' className='navbar-link'>{loggedUser.username}</Nav.Link>
+                                <Nav.Link href='/profile' as='span' className='navbar-link'>{loggedUser.username}</Nav.Link>
                             </NavLink>
 
                             <Nav.Link className='navbar-link' onClick={() => logoutUser()} >Logout</Nav.Link>

@@ -25,8 +25,15 @@
 
 .delete-button {
     float: right;
+    background-color: rgb(228, 50, 50);
+    border: 1px solid rgb(228, 50, 50)
+}
+
+.delete-button:hover {
+    background-color: rgb(187, 0, 0);
+    border: 1px solid rgb(187, 0, 0)
 }
 
 .delete-button img {
-    width: 20px;
+    width: 15px;
 }

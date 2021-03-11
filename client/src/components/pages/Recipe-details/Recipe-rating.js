@@ -25,7 +25,12 @@ class Rating extends Component {
         
         this.ratingsService
             .createRating(this.props.param, this.state)
-            .then(() => this.props.refreshList())
+            .then(response => {
+            if (response.data.message) {
+                this.props.handleAlert(true, 'Error', response.data.message)
+            }
+            this.props.refreshList()
+            })
             .catch(err => console.log(err))
     }
 

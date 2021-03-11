@@ -81,7 +81,7 @@ class RecipeDetails extends Component {
 
                 {this.props.loggedUser && 
                     <>
-                    <Rating param={this.props.match.params.recipe_id} recipeRating={this.state.recipeRating} refreshList={() => this.loadRecipe()} />
+                    <Rating param={this.props.match.params.recipe_id} recipeRating={this.state.recipeRating} handleAlert={this.props.handleAlert} refreshList={() => this.loadRecipe()} />
 
                     <RecipeCommentForm param={this.props.match.params.recipe_id} refreshList={() => this.loadRecipe()} />
                     </>
@@ -91,7 +91,7 @@ class RecipeDetails extends Component {
                     <RecipeComments recipeComments = {this.state.recipeComments} />
                 
 
-                    <Link to='/recipes' className='btn btn-dark'>Go back</Link>
+                    <Link to='/recipes' className='btn go-back'>Go back</Link>
                 </>
                 :
                 <>

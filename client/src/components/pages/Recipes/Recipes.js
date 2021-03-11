@@ -32,12 +32,17 @@ class Recipes extends Component {
             .catch(err => console.log(err))
     }
 
-    filterRecipes(labelsArr) {
+
+
+    filterRecipes(state) {
+
+        const labelsArr = state.labelsSelected
+        const ingredient = state.ingredient.toLowerCase()
 
         this.recipeService
             .getRecipes()
             .then(allRecipes => {
-                const filteredRecipes = allRecipes.data.filter(recipe => labelsArr.every(label => recipe.labels?.includes(label)))
+                const filteredRecipes = allRecipes.data.filter(recipe => labelsArr.every(label => recipe.labels?.includes(label)) && recipe.ingredients.some(ing => ing.name.toLowerCase().includes(ingredient)))
                 this.setState({recipes: filteredRecipes})
             })
             .catch(err => console.log(err))

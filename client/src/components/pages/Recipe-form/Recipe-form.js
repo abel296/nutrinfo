@@ -128,7 +128,7 @@ class RecipeForm extends Component {
                 this.props.closeModal()
                 this.props.refreshList()
                 this.props.handleAlert(true, 'Registration saved', 'The recipe has been saved into our Database')
-            } else {this.props.handleAlert(true, 'Error', "Some of the ingredients doesn't exist")}
+            } else {this.props.handleAlert(true, 'Error', "Some of the ingredients doesn't exist or some of the quantities are 0")}
         })
         .catch(err => console.log(err))
 
@@ -267,7 +267,7 @@ class RecipeForm extends Component {
                             </Col>
 
                             <Col className='add-ing-btn' md={{span: 3}}>
-                                <Button onClick={() => this.addIngredient()} variant="dark"  type="button">Add ingredient</Button>
+                                <Button onClick={() => this.addIngredient()} type="button">Add ingredient</Button>
                             </Col>
                         </Row>
 
@@ -277,7 +277,7 @@ class RecipeForm extends Component {
                                     <>
                                     <ListGroup.Item className='item-list' key={idx} >
                                     {elm.name} {elm.quantity}{elm.unit} 
-                                    <Button className='delete-button' variant='danger' onClick={() => this.deleteIngredient(idx)}><img src={close} alt='x icon' /></Button>
+                                    <Button className='delete-button' onClick={() => this.deleteIngredient(idx)}><img src={close} alt='x icon' /></Button>
                                     </ListGroup.Item>
                                     </>
                                     )}   
@@ -306,7 +306,7 @@ class RecipeForm extends Component {
                                 <ListGroup variant="flush">
                                         {this.state.recipe.steps?.map((elm, idx) =>
                                         <ListGroup.Item className='item-list' key={idx} >{elm.number} {elm.step}
-                                        <Button className='delete-button' variant='danger' onClick={() => this.deleteStep(idx)}><img src={close} alt='x icon' /></Button>
+                                        <Button className='delete-button' onClick={() => this.deleteStep(idx)}><img src={close} alt='x icon' /></Button>
                                         </ListGroup.Item>)}   
                                 </ListGroup>
                             </Col>
@@ -329,7 +329,7 @@ class RecipeForm extends Component {
                             <Form.Control type="file" name="imageUrl" onChange={e => this.handleFileUpload(e)} />
                         </Form.Group>                     
                     
-                    <Button variant="dark" block type="submit" disabled={this.state.isUploading}>{this.state.isUploading ? 'Waiting, uploading...' : 'New Recipe'}</Button>
+                    <Button block type="submit" disabled={this.state.isUploading}>{this.state.isUploading ? 'Waiting, uploading...' : 'New Recipe'}</Button>
                     
                 </Form>
             </Container>
