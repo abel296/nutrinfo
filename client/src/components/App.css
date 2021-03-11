@@ -107,4 +107,15 @@ main {
   border: 1px solid #008650;
 }
 
+.btn-primary:focus {
+  color: #fff;
+  background-color: #008650;
+  border-color: #0062cc;
+  box-shadow: 0 0 0 0.2rem rgb(38 143 255 / 50%);
+}
 
+.btn-primary:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #01965a;
+  border-color: #005cbf;
+}

@@ -34,7 +34,7 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto nav-rightside">
 
-                    <NavLink to='/recipes'>
+                    <NavLink style={{textDecoration: 'none'}} to='/recipes'>
                         <Nav.Link className='navbar-link' as='span'>Recipes list</Nav.Link>
                     </NavLink>
 
@@ -43,16 +43,16 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
                             ?
                             <>
 
-                                <NavLink to='/login'>
+                                <NavLink style={{textDecoration: 'none'}} to='/login'>
                                     <Nav.Link className='navbar-link' as='span'>Login</Nav.Link>
                                 </NavLink>
-                                <NavLink to='/signup'>
+                                <NavLink style={{textDecoration: 'none'}} to='/signup'>
                                     <Nav.Link as='span' className='navbar-link'>Signup</Nav.Link>
                                 </NavLink>
                             </>
                             :
                             <>
-                            <NavLink className='user-nav' to='/profile'>
+                            <NavLink style={{textDecoration: 'none'}} className='user-nav' to='/profile'>
                                 <img className='nav-img' src={loggedUser.image.url} alt={loggedUser.image.alt}></img>
                                 
                                 <Nav.Link href='/profile' className='navbar-link'>{loggedUser.username}</Nav.Link>

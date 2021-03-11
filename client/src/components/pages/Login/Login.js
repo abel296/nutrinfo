@@ -60,7 +60,7 @@ class Login extends Component {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" name='password' value={this.state.password} onChange={e => this.handleInputChange(e)} />
                         </Form.Group>
-                        <Button variant="dark" block type="submit">Submit</Button>
+                        <Button block type="submit">Submit</Button>
                         </Form>
 
                     </Col>
