@@ -1,7 +1,7 @@
 import { Navbar, Nav } from 'react-bootstrap'
 import "./Navigation.css"
 import { NavLink } from 'react-router-dom'
-import logo from './logo_white_large.png'
+import logo from './logo_large.png'
 
 import AuthService from '../../../service/auth.service'
 
@@ -21,7 +21,7 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
     }
 
     return (
-        <Navbar expand="lg" className='navigation-bar'variant="dark" style={{marginBottom: 30}}>
+        <Navbar expand="lg" className='navigation-bar' style={{marginBottom: 30}}>
             <NavLink to='/'>
                 <Navbar.Brand> <img 
                     alt=""
@@ -35,7 +35,7 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
                 <Nav className="ml-auto nav-rightside">
 
                     <NavLink to='/recipes'>
-                        <Nav.Link as='span'>Recipes list</Nav.Link>
+                        <Nav.Link className='navbar-link' as='span'>Recipes list</Nav.Link>
                     </NavLink>
 
                     {
@@ -44,10 +44,10 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
                             <>
 
                                 <NavLink to='/login'>
-                                    <Nav.Link className='links-nav' as='span'>Login</Nav.Link>
+                                    <Nav.Link className='navbar-link' as='span'>Login</Nav.Link>
                                 </NavLink>
                                 <NavLink to='/signup'>
-                                    <Nav.Link as='span'>Signup</Nav.Link>
+                                    <Nav.Link as='span' className='navbar-link'>Signup</Nav.Link>
                                 </NavLink>
                             </>
                             :
@@ -55,10 +55,10 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
                             <NavLink className='user-nav' to='/profile'>
                                 <img className='nav-img' src={loggedUser.image.url} alt={loggedUser.image.alt}></img>
                                 
-                                <Nav.Link as='span'>{loggedUser.username}</Nav.Link>
+                                <Nav.Link href='/profile' className='navbar-link'>{loggedUser.username}</Nav.Link>
                             </NavLink>
 
-                            <Nav.Link onClick={() => logoutUser()} >Logout</Nav.Link>
+                            <Nav.Link className='navbar-link' onClick={() => logoutUser()} >Logout</Nav.Link>
                             </>
                     }
 

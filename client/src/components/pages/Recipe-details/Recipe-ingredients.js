@@ -5,7 +5,7 @@ import DoughnutChart from './Doughnut-chart'
 import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
 
 
-const RecipeIngredients = ({image, ingredients, labels, diet,nutrients}) => {
+const RecipeIngredients = ({image, ingredients, labels, nutrients, servings}) => {
     return (
         <Row>
             <Col lg={6}>
@@ -16,6 +16,7 @@ const RecipeIngredients = ({image, ingredients, labels, diet,nutrients}) => {
                 <ul>
                     {ingredients.map(elm => <li key={elm._id}><strong>{capitalizeFirstLetter(elm.name)}</strong>: {elm.quantity} {elm.unit}</li>)}
                 </ul>
+                <p className='servings'><strong>Servings:</strong> {servings}</p>
             </Col>
             <Col lg={6}>
                 <h4>Nutrients</h4>

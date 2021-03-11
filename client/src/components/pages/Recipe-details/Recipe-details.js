@@ -71,6 +71,7 @@ class RecipeDetails extends Component {
 
                 <>
                 <h2>{capitalizeFirstLetter(this.state.recipe.title)}</h2>
+                <p><strong>User:</strong> {this.state.recipe.owner.username}</p>
 
                 <RecipeIngredients {...this.state.recipe} />
 

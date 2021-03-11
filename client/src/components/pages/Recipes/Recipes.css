@@ -10,3 +10,24 @@
 .glass-img {
     width: 60%;
 }
+
+.recipe-card {
+    margin: 20px 0;
+}
+
+.card {
+    border: 1px solid #008650;
+    border-radius: 1px;
+}
+
+.recipe-card .card-body {
+    background-color: white;
+}
+
+.recipe-card h5 {
+    font-size: 0.3em;
+}
+
+.card-img, .card-img-top {
+    border-radius: 0;
+}

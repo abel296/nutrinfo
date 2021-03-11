@@ -40,12 +40,14 @@
 }
 
 .delete-btn {
-    background-color: #f29b18;
+    background-color: rgb(228, 50, 50);
     transition: .5 ease;
+    color: white;
+    border: 0;
 }
 
 .delete-btn:hover {
-    background-color: #eca437;
+    background-color: rgb(187, 0, 0);
 
 }
 

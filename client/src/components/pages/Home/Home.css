@@ -7,20 +7,17 @@ h5 {
 }
 
 .hero {
-    background-image: url('./hero-background.jpg');
+    
     background-repeat: no-repeat;
     background-size: cover;
-    color: white;
+    color: #353535;
     height: 80vh;
     margin: 7px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     transition: 0.5s ease;
     max-width: 100%;
 }
 
-.hero:hover {
-    margin: -7px 0;
-}
+
 
 .hero .container {
     height: 100%;
@@ -31,7 +28,7 @@ h5 {
 }
 
 .hero h1 {
-    font-size: 3em;
+    font-size: 4em;
 }
 
 .info-block {
@@ -39,18 +36,17 @@ h5 {
     margin-left: 0;
 }
 
-.community-col {
+/* .community-col {
     padding: 0;
 }
 
 .community-section {
-    /* max-width: calc(50% - 14px); */
+    
     background-image: url("./chalkboard-background.jfif");
     margin: 7px;
     height: 80vh;
     color: white;
     transition: 0.5s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .community-section div {
@@ -65,23 +61,18 @@ h5 {
     font-size: 2.5em;
 }
 
-.community-section:hover {
-    margin: -7px 0 0 0;
-    /* max-width: 50%; */
-}
 
 .other-col {
     padding: 0;
 }
 
 .other-section {
-    /* max-width: calc(50% - 14px); */
+   
     background-image: url("./chalkboard-background.jfif");
     margin: 7px;
     height: 80vh;
     color: white;
     transition: 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .other-section div {
@@ -94,11 +85,8 @@ h5 {
 
 .other-section h2 {
     font-size: 2.5em;
-}
+} */
 
-.other-section:hover {
-    margin: -7px 0 0 0;
-    /* max-width: 50%; */
-}
+
 
 
