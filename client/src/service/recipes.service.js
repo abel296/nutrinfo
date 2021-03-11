@@ -15,6 +15,7 @@ class RecipeService {
     getUserRecipes = userId => this.api.get(`/getRecipesByUser/${userId}`)
     deleteRecipe = recipeId => this.api.delete(`/deleteRecipe/${recipeId}`)
     editRecipe = recipeId => this.api.put(`/editRecipe/${recipeId}`)
+    deleteRecipesByUser = user_id => this.api.delete(`/deleteRecipesByUser/${user_id}`)
 }
 
 export default RecipeService

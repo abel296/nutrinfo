@@ -41,4 +41,14 @@ router.post('/createRating/:id', checkLoggedIn, checkMongoId, (req, res) => {
     //     .catch(err => res.status(500).json({ message: 'Error saving rating into DB', err }))
 })
 
+router.delete('/deleteRatingsByUser/:id', checkLoggedIn, checkMongoId, (req, res) => {
+
+    const user_id = req.params.id
+
+    Rating
+        .deleteMany({owner: user_id})
+        .then(details => res.json({message: 'Ratings has been removed: ', details}))
+        .catch(err => res.status(500).json({ message: `Error removing user's ratings from DB`, err }))
+})
+
 module.exports = router

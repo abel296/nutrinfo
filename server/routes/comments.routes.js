@@ -28,4 +28,14 @@ router.post('/createComment/:id', checkLoggedIn, checkMongoId, (req, res) => {
         .catch(err => res.status(500).json({ message: 'Error saving comment into DB', err }))
 })
 
+router.delete('/deleteCommentsByUser/:id', checkLoggedIn, checkMongoId, (req, res) => {
+
+    const user_id = req.params.id
+
+    Comment
+        .deleteMany({owner: user_id})
+        .then(details => res.json({message: 'Comments has been removed: ', details}))
+        .catch(err => res.status(500).json({ message: `Error removing user's comments from DB`, err }))
+})
+
 module.exports = router

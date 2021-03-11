@@ -11,6 +11,7 @@ class CommentsService {
 
     getComments = recipe_id => this.api.get(`/getRecipeComments/${recipe_id}`)
     createComment = (recipe_id, commentData) => this.api.post(`/createComment/${recipe_id}`, commentData)
+    deleteCommentsByUser = (user_id) => this.api.delete(`/deleteCommentsByUser/${user_id}`)
     
 }
 

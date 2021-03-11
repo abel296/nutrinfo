@@ -25,7 +25,7 @@ const Routes = ({storeUser, loggedUser, handleAlert, refreshUser}) => {
             :
             <>
             <Route path="/recipe-details/:recipe_id" render={(props) => <RecipeDetails {...props} loggedUser={loggedUser} handleAlert={handleAlert} />} />
-            <Route path="/profile" render={() => <Profile loggedUser={loggedUser} handleAlert={handleAlert}  /> } />
+            <Route path="/profile" render={props => <Profile loggedUser={loggedUser} handleAlert={handleAlert} {...props} refreshUser={refreshUser} /> } />
             <Route path="/edit-user/:user_id" render={(props) => <UserForm {...props} loggedUser={loggedUser} refreshUser={refreshUser} />} />
             </>
             }

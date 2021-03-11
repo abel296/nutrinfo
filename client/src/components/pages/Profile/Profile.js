@@ -5,6 +5,9 @@ import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './Profile.css'
 
 import RecipeService from '../../../service/recipes.service'
+import AuthService from '../../../service/auth.service'
+import CommentsService from '../../../service/comments.service'
+import RatingsService from '../../../service/ratings.service'
 import { Link } from 'react-router-dom'
 
 class Profile extends Component {
@@ -17,6 +20,9 @@ class Profile extends Component {
         }
 
         this.recipeService = new RecipeService ()
+        this.authService = new AuthService ()
+        this.commentsService = new CommentsService ()
+        this.ratingsService = new RatingsService ()
     }
 
     componentDidMount() {
@@ -34,6 +40,25 @@ class Profile extends Component {
     togglemodalForm(value) {
         this.setState({showForm: value})
     }
+
+    deleteAccount() {
+
+        const user = this.authService.deleteUser(this.props.loggedUser._id)
+        const comments = this.commentsService.deleteCommentsByUser(this.props.loggedUser._id)
+        const ratings = this.ratingsService.deleteRatingsByUser(this.props.loggedUser._id)
+        const recipes = this.recipeService.deleteRecipesByUser(this.props.loggedUser._id)
+        
+
+        Promise
+            .all([user, comments, ratings, recipes])
+            .then(responsesArr => {
+                console.log('EL USUARIO SE HA ELIMINADO, RESPUESTA: ', responsesArr)
+                this.props.handleAlert(true, 'Alert', responsesArr[0].data.message)
+                this.props.history.push('/')
+                this.props.refreshUser()
+            })
+            .catch(err => console.log({err}))
+    }
     
     render () {
         return (
@@ -50,6 +75,7 @@ class Profile extends Component {
                                 <img className='profile-img' src={this.props.loggedUser.image.url} alt={this.props.loggedUser.image.alt}></img>
                                 <h1>Hi, {this.props.loggedUser.username}! </h1>
                                 <Link to={`edit-user/${this.props.loggedUser._id}`} className='btn edit-recipe-btn' >Edit Profile</Link>
+                                <Button onClick={() => this.deleteAccount()}>Delete Account</Button>
                             </header>
                             </Row>
                         </Container>

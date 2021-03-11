@@ -68,5 +68,14 @@ router.put('/editRecipe/:id', checkLoggedIn, checkMongoId, (req, res) => {
         .catch(err => res.status(500).json({ message: 'Error editing recipe in DB', err }))
 })
 
+router.delete('/deleteRecipesByUser/:id', checkLoggedIn, checkMongoId, (req, res) => {
+
+    const user_id = req.params.id
+
+    Recipe
+        .deleteMany({owner: user_id})
+        .then(details => res.json({message: 'Recipes has been removed: ', details}))
+        .catch(err => res.status(500).json({ message: `Error removing user's recipes from DB`, err }))
+})
 
 module.exports = router

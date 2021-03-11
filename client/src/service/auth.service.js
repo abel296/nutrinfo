@@ -14,6 +14,7 @@ class AuthService {
     editUser = (userId, userData) => this.api.put(`/edit/${userId}`, userData)
     isLoggedIn = () => this.api.get('/loggedin')
     logOut = () => this.api.post('/logout')
+    deleteUser = (user_id) => this.api.delete(`/delete/${user_id}`)
 }
 
 export default AuthService

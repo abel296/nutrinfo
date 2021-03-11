@@ -27,7 +27,7 @@ router.post('/signup', (req, res) => {
             User
                 .create({username, password: hashPass})
                 .then(newUser => req.login(newUser, err => err ? res.status(500).json({message: 'Login error'}) : res.json(newUser)))
-                .catch(() => res.status(500).json({ message: 'Error saving user into DB' }))
+                .catch(err => res.status(500).json({ message: 'Error saving user into DB', err }))
         })
 })
 
@@ -43,7 +43,7 @@ router.post('/login', (req, res, next) => {
             return
         }
 
-        req.login(theUser, err => err ? res.status(500).json({message: 'Login error'}) : res.json(theUser))
+        req.login(theUser, err => err ? res.status(500).json({message: 'Login error', err}) : res.json(theUser))
 
     }) (req, res, next)
 })
@@ -61,7 +61,7 @@ router.put('/edit/:id', checkLoggedIn, checkMongoId, (req, res) => {
     User
         .findByIdAndUpdate(user_id, {username, image, password: hashPass})
         .then(user => res.json(user))
-        .catch(() => res.status(500).json({ message: 'Error editing user in DB' }))
+        .catch(err => res.status(500).json({ message: 'Error editing user in DB', err }))
 })
 
 router.get('/loggedin', (req, res) => req.isAuthenticated() ? res.json(req.user) : res.status(403).json({message: 'Unauthorized'}))
@@ -69,6 +69,19 @@ router.get('/loggedin', (req, res) => req.isAuthenticated() ? res.json(req.user)
 router.post('/logout', (req, res) => {
     req.logout()
     res.json({message: 'Logout success'})
+})
+
+router.delete('/delete/:id', checkLoggedIn, checkMongoId, (req, res) => {
+
+    const user_id = req.params.id
+
+    User
+        .findByIdAndDelete(user_id)
+        .then(removedUser => {
+            req.logout()
+            res.json({message: 'The account has been removed', removedUser})
+        })
+        .catch(err => res.status(500).json({ message: 'Error removing user from DB', err }))
 })
 
 module.exports = router
