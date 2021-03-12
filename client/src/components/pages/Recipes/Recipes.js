@@ -27,7 +27,7 @@ class Recipes extends Component {
         this.recipeService
             .getRecipes()
             .then(response => this.setState({recipes: response.data}))
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error loading recipes'))
     }
 
     filterRecipes(state) {
@@ -41,7 +41,7 @@ class Recipes extends Component {
                 const filteredRecipes = allRecipes.data.filter(recipe => labelsArr.every(label => recipe.labels?.includes(label)) && recipe.ingredients.some(ing => ing.name.toLowerCase().includes(ingredient)))
                 this.setState({recipes: filteredRecipes})
             })
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error filtering recipes'))
     }
 
 

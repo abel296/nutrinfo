@@ -15,7 +15,7 @@ const Routes = ({storeUser, loggedUser, handleAlert, refreshUser}) => {
         <>
         <Switch>
             <Route path="/" exact render={() => <Home />} />
-            <Route path="/recipes" render={() => <Recipes />} />
+            <Route path="/recipes" render={() => <Recipes handleAlert={handleAlert} />} />
             <Route path="/recipe-details/:recipe_id" render={(props) => <RecipeDetails {...props} loggedUser={loggedUser} handleAlert={handleAlert} />} />
             <Route path="/signup" render={props => <Signup storeUser={storeUser} {...props} handleAlert={handleAlert} />} />
             <Route path="/login" render={props => <Login storeUser={storeUser} {...props} handleAlert={handleAlert} />} />

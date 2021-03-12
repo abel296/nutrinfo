@@ -6,3 +6,7 @@
 .card-image-wrapper {
     height: 232px;    
 }
+
+.user-card {
+    margin: 20px 0;
+}

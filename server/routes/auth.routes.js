@@ -6,6 +6,7 @@ const User = require('../models/user.model')
 const {checkLoggedIn, checkMongoId} = require('../middlewares')
 
 router.post('/signup', (req, res) => {
+    
     const {password, username} = req.body
 
     if (!username || !password) {

@@ -15,8 +15,7 @@ router.get('/getRecipeRatings/:id', checkLoggedIn, checkMongoId, (req, res) => {
 
 router.post('/createRating/:id', checkLoggedIn, checkMongoId, (req, res) => {
 
-    const recipe_id = req.params.id
-    const user_id = req.user._id
+    const recipe_id = req.params.id, user_id = req.user._id
 
     Rating
         .find({recipe: recipe_id})
@@ -29,7 +28,6 @@ router.post('/createRating/:id', checkLoggedIn, checkMongoId, (req, res) => {
                     .create({owner: user_id, rating: req.body.rating, recipe: recipe_id})
                     .then(response => res.json(response))
                     .catch(err => res.status(500).json({ message: 'Error saving rating into DB', err }))
-
             }
         })
         .catch(err => res.status(500).json({ message: 'Error saving rating into DB', err }))

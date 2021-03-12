@@ -59,7 +59,7 @@ class RecipeDetails extends Component {
                     this.setState({recipe: responses[0]?.data, recipeComments: responses[1]?.data, recipeRating: ratingsAverage})
                 }
             })
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error getting recipe details'))
     }
 
     render() {
@@ -83,7 +83,7 @@ class RecipeDetails extends Component {
                     <>
                     <Rating param={this.props.match.params.recipe_id} recipeRating={this.state.recipeRating} handleAlert={this.props.handleAlert} refreshList={() => this.loadRecipe()} />
 
-                    <RecipeCommentForm param={this.props.match.params.recipe_id} refreshList={() => this.loadRecipe()} />
+                    <RecipeCommentForm handleAlert={this.props.handleAlert} param={this.props.match.params.recipe_id} refreshList={() => this.loadRecipe()} />
                     </>
                 }
 

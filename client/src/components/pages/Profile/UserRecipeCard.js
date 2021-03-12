@@ -4,7 +4,7 @@ import './UserRecipeCard.css'
 
 import RecipeService from '../../../service/recipes.service'
 
-const UserRecipeCard = ({image, title, _id, refreshList}) => {
+const UserRecipeCard = ({image, title, _id, refreshList, handleAlert}) => {
 
     const recipeService = new RecipeService()
 
@@ -13,13 +13,13 @@ const UserRecipeCard = ({image, title, _id, refreshList}) => {
         recipeService
             .deleteRecipe(_id)
             .then(() => refreshList())
-            .catch(err => console.log(err))
+            .catch(err => handleAlert(true, 'Error', 'Error removing recipe'))
     }
 
 
     return (
         <Col lg={4} md={6} xs={12}>
-            <Card>
+            <Card className='user-card'>
             <div className='card-image-wrapper'>
                 <Card.Img className='card-image' variant="top" src={image?.url}/>
             </div>

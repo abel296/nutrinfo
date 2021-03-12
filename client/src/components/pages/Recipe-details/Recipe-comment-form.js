@@ -28,7 +28,7 @@ class RecipeCommentForm extends Component {
                 this.setState({text: ''}, () => this.props.refreshList())
                 
             })
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error creating comment'))
     }
     
     render() {

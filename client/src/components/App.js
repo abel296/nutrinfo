@@ -44,7 +44,7 @@ class App extends Component {
   render() {
     return(
       <>
-      <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} refreshUser={() => this.fetchUser()} />
+      <Navigation handleAlert={this.handleAlert} storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} refreshUser={() => this.fetchUser()} />
 
       <main>
         <Routes storeUser={user => this.storeUser(user) } loggedUser={this.state.loggedUser} handleAlert={this.handleAlert} refreshUser={() => this.fetchUser()} />

@@ -45,3 +45,9 @@
 .go-back {
     margin-top: 20px;
 }
+
+.time {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+}

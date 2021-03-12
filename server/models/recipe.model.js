@@ -9,7 +9,7 @@ const recipeSchema = new Schema({
     image: {
         url: {
             type: String,
-            default: 'https://masquevinilo.com/5324-thickbox_default/vinilo-decorativo-verduras-a-la-sarten.jpg'
+            default: 'https://res.cloudinary.com/abel-av/image/upload/v1615545664/nutrinfo/default-recipe-image_uhtuvt.png'
         },
         alt: {
             type: String,

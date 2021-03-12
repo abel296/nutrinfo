@@ -31,7 +31,7 @@ class Rating extends Component {
             }
             this.props.refreshList()
             })
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error creating rating'))
     }
 
     render() {
@@ -39,7 +39,6 @@ class Rating extends Component {
             <>
             <ReactStars size={30} isHalf={true} onChange={newValue => this.handleInputChange(newValue)} />
             {this.props.recipeRating === 'NaN' ? <p></p> : <h6>{this.props.recipeRating}</h6>}
-            
             </>
         )
     }   

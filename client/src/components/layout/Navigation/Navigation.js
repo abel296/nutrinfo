@@ -5,7 +5,7 @@ import logo from './logo_large.png'
 
 import AuthService from '../../../service/auth.service'
 
-const Navigation = ({storeUser, loggedUser, refreshUser}) => {
+const Navigation = ({storeUser, loggedUser, handleAlert}) => {
 
     const authService = new AuthService()
 
@@ -16,8 +16,7 @@ const Navigation = ({storeUser, loggedUser, refreshUser}) => {
             .then(() => {
                 storeUser(null)
             })
-            .catch(err => console.log({err}))
-        
+            .catch(() => handleAlert(true, 'Error', 'Failed to logout user'))
     }
 
     return (

@@ -17,9 +17,7 @@ router.get('/getRecipeComments/:id', checkLoggedIn, checkMongoId, (req, res) => 
 
 router.post('/createComment/:id', checkLoggedIn, checkMongoId, (req, res) => {
 
-    console.log(req.body)
-    const recipe_id = req.params.id
-    const user_id = req.user._id
+    const recipe_id = req.params.id, user_id = req.user._id
     
 
     Comment

@@ -39,7 +39,7 @@ class UserForm extends Component {
                 this.props.refreshUser()
                 this.props.history.push('/profile')
             })
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error editing user'))
     }
 
     handleFileUpload(e) {
@@ -59,7 +59,7 @@ class UserForm extends Component {
                     }} 
                 })
             })
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error uploading image'))
     }
 
     render() {

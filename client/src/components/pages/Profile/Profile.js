@@ -10,14 +10,14 @@ import CommentsService from '../../../service/comments.service'
 import RatingsService from '../../../service/ratings.service'
 import { Link } from 'react-router-dom'
 
-
 class Profile extends Component {
 
     constructor() {
         super()
         this.state = {
             userRecipes: [],
-            showForm: false
+            showForm: false,
+            showDelete: false
         }
 
         this.recipeService = new RecipeService ()
@@ -34,10 +34,8 @@ class Profile extends Component {
 
         this.recipeService
             .getUserRecipes(this.props.loggedUser._id)
-            .then(response => {
-                console.log(response)
-                this.setState({userRecipes: response.data})})
-            .catch(err => console.log({err}))
+            .then(response => this.setState({userRecipes: response.data}))
+            .catch(err => this.props.handleAlert(true, 'Error', 'Error loading recipes'))
     }
 
     togglemodalForm(value) {
@@ -55,17 +53,21 @@ class Profile extends Component {
         Promise
             .all([user, comments, ratings, recipes])
             .then(responsesArr => {
-                console.log('EL USUARIO SE HA ELIMINADO, RESPUESTA: ', responsesArr)
                 this.props.handleAlert(true, 'Alert', responsesArr[0].data.message)
                 this.props.history.push('/')
                 this.props.refreshUser()
             })
-            .catch(err => console.log({err}))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error removing user'))
+    }
+
+    togglemodalDelete(value) {
+        this.setState({showDelete: value})
     }
     
     render () {
         return (
             <>
+                
                 <Row className='justify-content-center user-recipes'>
           
                     <Col lg={2} md={3} xs={4} className='avatar-section '>
@@ -89,12 +91,13 @@ class Profile extends Component {
                                 <Button onClick={() => this.togglemodalForm(true)} className='new-recipe-btn'>New Recipe</Button>
                             </div>
 
-                        <UserRecipesList userRecipes={this.state.userRecipes} refreshList={() => this.loadUserRecipes()} ></UserRecipesList>                        
+                        <UserRecipesList handleAlert={this.props.handleAlert} userRecipes={this.state.userRecipes} refreshList={() => this.loadUserRecipes()} ></UserRecipesList>                        
                         </Container>
                     </Col>
-                                <Button className='delete-account-btn' onClick={() => this.deleteAccount()}>Delete Account</Button>
+                    <Button onClick={() => this.togglemodalDelete(true)} className='btn delete-btn'>Delete User</Button>
                 </Row>
     
+
                 <Modal show={this.state.showForm} onHide={() => this.togglemodalForm(false)}>
                     <Modal.Header closeButton>
                         <Modal.Title>New recipe</Modal.Title>
@@ -103,6 +106,18 @@ class Profile extends Component {
                         <RecipeForm loggedUser={this.props.loggedUser} closeModal={() => this.togglemodalForm(false)} refreshList={() => this.loadUserRecipes()} handleAlert={this.props.handleAlert} />
                     </Modal.Body>
                 </Modal>
+
+                <Modal show={this.state.showDelete} onHide={() => this.togglemodalDelete(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Are you sure?</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                                <Button className='btn delete-btn' onClick={() => this.deleteAccount()}>Delete Account</Button>
+                        
+                    </Modal.Body>
+                </Modal>
+                
+
             </>
         )
     }

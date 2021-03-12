@@ -126,7 +126,7 @@ class RecipeForm extends Component {
                 this.props.handleAlert(true, 'Registration saved', 'The recipe has been saved into our Database')
             } else {this.props.handleAlert(true, 'Error', "Some of the ingredients doesn't exist or some of the quantities are 0")}
         })
-        .catch(err => console.log(err))
+        .catch(() => this.props.handleAlert(true, 'Error', 'Error creating recipe'))
     }
 
     handleFileUpload = e => {
@@ -147,7 +147,7 @@ class RecipeForm extends Component {
                     }} 
                 })
             })
-            .catch(err => console.log(err))
+            .catch(() => this.props.handleAlert(true, 'Error', 'Error uploading image'))
     }
 
     deleteIngredient(idx) {
