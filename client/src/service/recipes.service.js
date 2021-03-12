@@ -8,7 +8,6 @@ class RecipeService {
             withCredentials: true
     })}
 
-
     createRecipe = newRecipe => this.api.post('/createRecipe', newRecipe)
     getRecipes = () => this.api.get(`/getAllRecipes`)
     getRecipe = recipeId => this.api.get(`/getOneRecipe/${recipeId}`)

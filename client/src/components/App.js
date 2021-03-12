@@ -8,7 +8,6 @@ import Alert from './shared/Alert/Alert'
 import AuthService from '../service/auth.service'
 
 
-
 class App extends Component {
 
   constructor() {
@@ -26,7 +25,7 @@ class App extends Component {
   }
 
   storeUser(loggedUser) {
-    this.setState({loggedUser}, () => console.log('Modified user', loggedUser))
+    this.setState({loggedUser})
   }
 
   fetchUser() {

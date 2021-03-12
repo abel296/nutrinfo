@@ -22,10 +22,6 @@ const userSchema = new Schema({
             default: 'default profile'
         },
     },
-    fav_recipes: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Recipe"
-    }],
 },{
     timestamps:true
 })

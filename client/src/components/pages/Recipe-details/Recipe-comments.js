@@ -5,7 +5,7 @@ const RecipeComments = ({recipeComments}) => {
         <Row>
             {recipeComments.map(elm => {
                 return (
-                <Col className='comment' xl={12}>
+                <Col className='comment' xl={12} key={elm._id} >
                     <div>
                         <img src={elm.owner.image.url} alt={elm.owner.image.alt} />
                         <h6>{elm.owner.username}</h6>

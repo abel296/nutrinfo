@@ -29,8 +29,6 @@ const Routes = ({storeUser, loggedUser, handleAlert, refreshUser}) => {
             <Route path="/edit-user/:user_id" render={(props) => <UserForm {...props} loggedUser={loggedUser} refreshUser={refreshUser} />} />
             </>
             }
-            
-            
         </Switch>
         </>
     )

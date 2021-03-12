@@ -35,53 +35,6 @@ main {
   background-color: #343a40;
 }
 
-/* .button {
-    margin-top: 30px;
-    font-size: 1.2em;
-    color: white;
-    border: 1px solid black;
-    padding: 10px 40px;
-    border-radius: 35px;
-    background-color:#01427c;
-    transition: 0.5s ease;
-    font-weight: 700;
-}
-
-.button.button-small {
-    font-size: 1em;
-}
-
-.button.button-white {
-    background-color: white;
-    border: 3px solid white;
-    color: black;
-}
-
-.button.button-white.button-transparent {
-    color: white;
-    background-color: rgba(255, 255, 255, 0);
-    border: 3px solid white;
-}
-
-.button.button-white.button-transparent:hover {
-    background-color: white;
-    color: black;
-} */
-
-/* ::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 0 6px rgb(243, 243, 243); 
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 0 6px rgb(201, 201, 201); 
-} */
-
 .spinner-div {
   display: flex;
   justify-content: center;
@@ -95,10 +48,9 @@ main {
   border: 1px solid #008650;
 }
 
-
 .btn.btn-dark:active
 {
-    background-color:#00ac67 !important; /* add here any color */
+    background-color:#00ac67;
     border: 1px solid #00ac67
 }
 

@@ -33,12 +33,6 @@ router.post('/createRating/:id', checkLoggedIn, checkMongoId, (req, res) => {
             }
         })
         .catch(err => res.status(500).json({ message: 'Error saving rating into DB', err }))
-    
-
-    // Rating
-    //     .create({owner: user_id, rating: req.body.rating, recipe: recipe_id})
-    //     .then(response => res.json(response))
-    //     .catch(err => res.status(500).json({ message: 'Error saving rating into DB', err }))
 })
 
 router.delete('/deleteRatingsByUser/:id', checkLoggedIn, checkMongoId, (req, res) => {

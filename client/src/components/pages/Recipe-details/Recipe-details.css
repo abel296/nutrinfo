@@ -8,12 +8,6 @@
     text-align: center;
 }
 
-/* .nutrients-row {
-    margin-bottom: 20px;
-    margin-top: 20px;
-    font-size: 0.9em;
-} */
-
 .recipe-img {
     height: 350px;
     object-fit: cover;
@@ -25,8 +19,6 @@
     list-style: none;
     width: 100%;
 }
-
-
 
 .comment {
     margin: 20px;

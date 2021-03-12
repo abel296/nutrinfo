@@ -4,6 +4,7 @@ import {Row, Col, Container, Form} from 'react-bootstrap'
 import './LabelsFilter.css'
 
 class LabelsFilter extends Component {
+    
     constructor() {
         super()
         this.state = {

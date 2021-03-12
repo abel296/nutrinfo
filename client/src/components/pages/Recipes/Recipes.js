@@ -15,8 +15,6 @@ class Recipes extends Component {
         this.state = {
             recipes: undefined
         }
-
-
         this.recipeService = new RecipeService()
     }
 
@@ -32,8 +30,6 @@ class Recipes extends Component {
             .catch(err => console.log(err))
     }
 
-
-
     filterRecipes(state) {
 
         const labelsArr = state.labelsSelected
@@ -46,8 +42,6 @@ class Recipes extends Component {
                 this.setState({recipes: filteredRecipes})
             })
             .catch(err => console.log(err))
-
-        
     }
 
 
@@ -59,8 +53,6 @@ class Recipes extends Component {
             {this.state.recipes
                 ?
                 <>
-                
-                
                     <Row className='recipes-section'>
                         <Col lg={2} md={3} xs={12}>
 
@@ -96,7 +88,6 @@ class Recipes extends Component {
                 }
                     </Row>
                 </>
-                
                 :
                 <>
 

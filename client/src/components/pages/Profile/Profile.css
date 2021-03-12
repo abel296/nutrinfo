@@ -17,8 +17,6 @@
     object-fit: cover;
     border-radius: 50%;
     display: block;
-
-
     background-color: red;
 }
 
@@ -48,7 +46,6 @@
 
 .delete-btn:hover {
     background-color: rgb(187, 0, 0);
-
 }
 
 .edit-recipe-btn {

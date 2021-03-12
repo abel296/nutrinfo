@@ -10,6 +10,7 @@ import CommentsService from '../../../service/comments.service'
 import RatingsService from '../../../service/ratings.service'
 import { Link } from 'react-router-dom'
 
+
 class Profile extends Component {
 
     constructor() {
@@ -33,7 +34,9 @@ class Profile extends Component {
 
         this.recipeService
             .getUserRecipes(this.props.loggedUser._id)
-            .then(response => this.setState({userRecipes: response.data}))
+            .then(response => {
+                console.log(response)
+                this.setState({userRecipes: response.data})})
             .catch(err => console.log({err}))
     }
 
@@ -63,8 +66,6 @@ class Profile extends Component {
     render () {
         return (
             <>
-
-                
                 <Row className='justify-content-center user-recipes'>
           
                     <Col lg={2} md={3} xs={4} className='avatar-section '>
@@ -94,7 +95,6 @@ class Profile extends Component {
                                 <Button className='delete-account-btn' onClick={() => this.deleteAccount()}>Delete Account</Button>
                 </Row>
     
-
                 <Modal show={this.state.showForm} onHide={() => this.togglemodalForm(false)}>
                     <Modal.Header closeButton>
                         <Modal.Title>New recipe</Modal.Title>
@@ -103,7 +103,6 @@ class Profile extends Component {
                         <RecipeForm loggedUser={this.props.loggedUser} closeModal={() => this.togglemodalForm(false)} refreshList={() => this.loadUserRecipes()} handleAlert={this.props.handleAlert} />
                     </Modal.Body>
                 </Modal>
-
             </>
         )
     }

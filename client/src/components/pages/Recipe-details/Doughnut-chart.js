@@ -58,8 +58,6 @@ class DoughnutChart extends Component {
               ctx.save();
             }
           });
-        
-        
     }
 
     render() {
@@ -68,8 +66,6 @@ class DoughnutChart extends Component {
     
         return (
             <>
-            
-            
             <canvas ref={this.chartRef} />
 
             <Row className="justify-content-around nutrients-row">

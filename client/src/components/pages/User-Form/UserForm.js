@@ -5,7 +5,6 @@ import AuthService from '../../../service/auth.service'
 import UploadService from '../../../service/upload.service'
 
 
-
 class UserForm extends Component {
     constructor(props) {
         super(props)
@@ -20,10 +19,6 @@ class UserForm extends Component {
         this.authService = new AuthService()
         this.uploadService = new UploadService()
 
-    }
-
-    componentDidMount() {
-        // this.setState({user: {...this.state.user, username: this.props.loggedUser.username}})
     }
 
     handleInputChange(e) {

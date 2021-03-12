@@ -24,8 +24,6 @@ class RecipeForm extends Component {
                 steps: [],
                 time: 0,
                 servings: 0,
-                // diet: [],
-                // rating: [],
                 labels: [],
             },
             ingToPush: {
@@ -69,8 +67,6 @@ class RecipeForm extends Component {
     }
     
     handleSubmit(e) {
-
-        // const {title, ingredients} = this.state
 
         e.preventDefault()
 
@@ -131,65 +127,6 @@ class RecipeForm extends Component {
             } else {this.props.handleAlert(true, 'Error', "Some of the ingredients doesn't exist or some of the quantities are 0")}
         })
         .catch(err => console.log(err))
-
-        
-
-        //#region
-        // this.state.ingredients.forEach((ingredient) => {
-        //     this.edamamService
-        //         .getIngredientInfo(ingredient.name, ingredient.quantity, ingredient.unit)
-        //         .then(response => {
-        //             console.log("en ello...")
-                    
-        //             if (nutrientsArr.length === 0) {
-
-        //                 //nutrients
-        //                 nutrientsArr.push(response.data.totalNutrients.ENERC_KCAL)
-        //                 nutrientsArr.push(response.data.totalNutrients.FAT)
-        //                 nutrientsArr.push(response.data.totalNutrients.CHOCDF)
-        //                 nutrientsArr.push(response.data.totalNutrients.PROCNT)
-
-        //                 //labels
-        //                 labelsArr.push(...response.data.healthLabels)
-                        
-        //             } else {
-
-        //                 //nutrients
-        //                 nutrientsArr[0].quantity += response.data.totalNutrients.ENERC_KCAL.quantity
-        //                 nutrientsArr[1].quantity += response.data.totalNutrients.FAT.quantity
-        //                 nutrientsArr[2].quantity += response.data.totalNutrients.CHOCDF.quantity
-        //                 nutrientsArr[3].quantity += response.data.totalNutrients.PROCNT.quantity
-
-                        
-        //                 const labelsToPush = []
-        //                 //labels
-        //                 labelsArr.forEach((label, idx) => {
-        //                     if (!response.data.healthLabels.includes(label)){
-        //                         const IndexOfLabel = labelsArr.indexOf(label)
-        //                         labelsArr.splice(IndexOfLabel, 1)
-        //                     } else {
-        //                         labelsToPush.push(response.data.healthLabels[idx])
-        //                     }
-        //                 })
-                        
-        //                 labelsArr.push(...labelsToPush)
-                        
-        //             }
-
-        //         })
-        //         .catch(err => console.log({err}))   
-      // })
-      
-
-        
-        
-
-        // this.recipeService
-        //     .createRecipe({title, ingredients})
-        //     .then(response => console.log(response))
-        //     .catch(err => console.log({err})) 
-        //#endregion  
-        
     }
 
     handleFileUpload = e => {
@@ -247,8 +184,6 @@ class RecipeForm extends Component {
                                 <Form.Control type="number" name="quantity" value={this.state.ingToPush.quantity} onChange={e => this.handleIngredientInputChange(e)}/>
                             </Col>
                             <Col md={{span: 2}}>
-                                {/* <Form.Label>Unit</Form.Label>
-                                <Form.Control type="text" name="unit" value={this.state.ingToPush.unit} onChange={e => this.handleIngredientInputChange(e)}/> */}
                                 <Form.Label>Unit</Form.Label>
                                 <Form.Control
                                     as="select"
@@ -298,7 +233,7 @@ class RecipeForm extends Component {
                             </Col>
 
                             <Col className='add-step-btn' md={{span: 3}}>
-                                <Button onClick={() => this.addStep()} variant="dark"  type="button">Add step</Button>
+                                <Button onClick={() => this.addStep()} type="button">Add step</Button>
                             </Col>
                         </Row>
 
