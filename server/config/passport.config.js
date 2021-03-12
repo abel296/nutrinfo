@@ -1,43 +1,55 @@
-const session = require("express-session")
-const bcrypt = require("bcrypt")
-const passport = require("passport")
-const LocalStrategy = require("passport-local").Strategy
-const flash = require("connect-flash")
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+var MongoDBStore = require("connect-mongodb-session")(session);
 
-const User = require('../models/user.model')
+const User = require("../models/user.model");
 
-module.exports = app => {
+module.exports = (app) => {
+  var store = new MongoDBStore({
+    uri: "mongodb://localhost:27017/connect_mongodb_session_test",
+    collection: "mySessions",
+  });
 
-    app.use(session({
-        secret: "caca",
-        resave: true,
-        saveUninitialized: true,
-
-    }))
-
-    passport.serializeUser((user, next) => next(null, user._id))
-    passport.deserializeUser((id, next) => {
-        User.findById(id)
-            .then(theUser => next(null, theUser))
-            .catch(err => next(err))
+  app.use(
+    session({
+      secret: "caca",
+      resave: true,
+      saveUninitialized: true,
+      store: store,
     })
+  );
 
-    app.use(flash())
+  passport.serializeUser((user, next) => next(null, user._id));
+  passport.deserializeUser((id, next) => {
+    User.findById(id)
+      .then((theUser) => next(null, theUser))
+      .catch((err) => next(err));
+  });
 
-    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
+  app.use(flash());
+
+  passport.use(
+    new LocalStrategy(
+      { passReqToCallback: true },
+      (req, username, password, next) => {
         User.findOne({ username })
-            .then(user => {
-                if (!user) {
-                    return next(null, false, { message: "Wrong username" })
-                }
-                if (!bcrypt.compareSync(password, user.password)) {
-                    return next(null, false, { message: "Wrong password" })
-                }
-                return next(null, user)
-            })
-            .catch(err => res.status(500).json(err))
-    }))
+          .then((user) => {
+            if (!user) {
+              return next(null, false, { message: "Wrong username" });
+            }
+            if (!bcrypt.compareSync(password, user.password)) {
+              return next(null, false, { message: "Wrong password" });
+            }
+            return next(null, user);
+          })
+          .catch((err) => res.status(500).json(err));
+      }
+    )
+  );
 
-    app.use(passport.initialize())
-    app.use(passport.session())
-}
+  app.use(passport.initialize());
+  app.use(passport.session());
+};
