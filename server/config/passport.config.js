@@ -9,7 +9,7 @@ const User = require("../models/user.model");
 
 module.exports = (app) => {
   var store = new MongoDBStore({
-    uri: "mongodb://localhost:27017/connect_mongodb_session_test",
+    uri: process.env.MONGODB_URI,
     collection: "mySessions",
   });
 
