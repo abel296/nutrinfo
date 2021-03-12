@@ -9,7 +9,7 @@ const User = require('../models/user.model')
 module.exports = app => {
 
     app.use(session({
-        secret: process.env.SESSION_SECRET,
+        secret: "caca",
         resave: true,
         saveUninitialized: true,
 
