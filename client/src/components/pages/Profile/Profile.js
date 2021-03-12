@@ -94,7 +94,7 @@ class Profile extends Component {
                         <UserRecipesList handleAlert={this.props.handleAlert} userRecipes={this.state.userRecipes} refreshList={() => this.loadUserRecipes()} ></UserRecipesList>                        
                         </Container>
                     </Col>
-                    <Button onClick={() => this.togglemodalDelete(true)} className='btn delete-btn'>Delete User</Button>
+                    <Button onClick={() => this.togglemodalDelete(true)} className='btn delete-btn delete-user-btn'>Delete User</Button>
                 </Row>
     
 
