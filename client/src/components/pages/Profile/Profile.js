@@ -75,7 +75,6 @@ class Profile extends Component {
                                 <img className='profile-img' src={this.props.loggedUser.image.url} alt={this.props.loggedUser.image.alt}></img>
                                 <h1>Hi, {this.props.loggedUser.username}! </h1>
                                 <Link to={`edit-user/${this.props.loggedUser._id}`} className='btn edit-recipe-btn' >Edit Profile</Link>
-                                <Button onClick={() => this.deleteAccount()}>Delete Account</Button>
                             </header>
                             </Row>
                         </Container>
@@ -92,6 +91,7 @@ class Profile extends Component {
                         <UserRecipesList userRecipes={this.state.userRecipes} refreshList={() => this.loadUserRecipes()} ></UserRecipesList>                        
                         </Container>
                     </Col>
+                                <Button className='delete-account-btn' onClick={() => this.deleteAccount()}>Delete Account</Button>
                 </Row>
     
 
