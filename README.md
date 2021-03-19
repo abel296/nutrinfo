@@ -5,8 +5,8 @@ Nutrinfo is a nutritional website where you will know the nutritional informatio
 
 ## Screenshots
 ![langing page](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_landing_rqrta7.png)
-![list](https://res.cloudinary.com/abel-av/image/upload/v1616112081/nutrinfo/nutrinfo_details2_ctdpee.png)
-![details](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_list_urylt8.png)
+![details](https://res.cloudinary.com/abel-av/image/upload/v1616112081/nutrinfo/nutrinfo_details2_ctdpee.png)
+![list](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_list_urylt8.png)
 ![filters](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_filters_mcao9s.png)
 
 ## Technologies
