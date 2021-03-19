@@ -1,7 +1,7 @@
 # Nutrinfo
 It is nice to know what you are really eating, isn't it? 
 
-Nutrinfo is a website where you discover the nutritional information contained in your favourites recipes.
+Nutrinfo is a website where you discover the nutritional information contained in your favourites recipes
 
 ## Screenshots
 ![langing page](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_landing_rqrta7.png)
