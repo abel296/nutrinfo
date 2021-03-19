@@ -4,7 +4,11 @@ It is nice to know what you are really eating, isn't it?
 Nutrinfo is a nutritional website where you will know the nutritional information contained in your favourites recipes.
 
 ## Screenshots
-![Chat Preview](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_landing_rqrta7.png)
+![langing page](https://res.cloudinary.com/abel-av/image/upload/v1616111186/nutrinfo/nutrinfo_landing2_vbmrgo.png)
+![list](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_list_urylt8.png)
+![details](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_details_qrmsph.png)
+![filters](https://res.cloudinary.com/abel-av/image/upload/v1616110391/nutrinfo/nutrinfo_filters_mcao9s.png)
+
 ## Technologies
 * Node
 * Express
