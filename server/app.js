@@ -19,7 +19,7 @@ require('./config/passport.config')(app)
 // Routes index
 require('./routes')(app)
 
-// Error handling
-require('./config/error-handlers.config')(app)
-
 module.exports = app
+
+// Middleware to send index.html inside the build to the client
+app.use((req, res) => res.sendFile(__dirname + "/public/index.html"));

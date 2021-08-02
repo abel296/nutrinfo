@@ -4,7 +4,7 @@ class UploadService {
 
     constructor() {
         this.api = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/files`,
+            baseURL: `${process.env.REACT_APP_BASE_URL}/files`,
             withCredentials: true
         })
     }

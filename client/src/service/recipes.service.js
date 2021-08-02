@@ -4,7 +4,7 @@ class RecipeService {
 
     constructor(){
         this.api = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/recipes`,
+            baseURL: `${process.env.REACT_APP_BASE_URL}/recipes`,
             withCredentials: true
     })}
 

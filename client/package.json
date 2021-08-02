@@ -18,8 +18,8 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "REACT_APP_API_URL=http://localhost:5000/api react-scripts start",
-    "build": "react-scripts build",
+    "start": "REACT_APP_BASE_URL=http://localhost:5000/api react-scripts start",
+    "build": "REACT_APP_BASE_URL=https://nutrinfoweb.herokuapp.com/api react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -4,7 +4,7 @@ class CommentsService {
 
     constructor() {
         this.api = axios.create({
-            baseURL : `${process.env.REACT_APP_API_URL}/comments`,
+            baseURL : `${process.env.REACT_APP_BASE_URL}/comments`,
             withCredentials : true
         })
     }

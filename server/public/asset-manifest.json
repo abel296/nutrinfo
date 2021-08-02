@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d0880ff1.chunk.css",
+    "main.js": "/static/js/main.d8c11bbc.chunk.js",
+    "main.js.map": "/static/js/main.d8c11bbc.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.900dd88b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.900dd88b.js.map",
+    "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
+    "static/js/2.f377987e.chunk.js": "/static/js/2.f377987e.chunk.js",
+    "static/js/2.f377987e.chunk.js.map": "/static/js/2.f377987e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.d0880ff1.chunk.css.map": "/static/css/main.d0880ff1.chunk.css.map",
+    "static/js/2.f377987e.chunk.js.LICENSE.txt": "/static/js/2.f377987e.chunk.js.LICENSE.txt",
+    "static/media/close.54e3dd7b.svg": "/static/media/close.54e3dd7b.svg",
+    "static/media/logo_large.bf6a3bd5.png": "/static/media/logo_large.bf6a3bd5.png",
+    "static/media/logo_small_icon_only_inverted.16291f80.png": "/static/media/logo_small_icon_only_inverted.16291f80.png",
+    "static/media/magnifying-glass.23b6707c.png": "/static/media/magnifying-glass.23b6707c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.900dd88b.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.f377987e.chunk.js",
+    "static/css/main.d0880ff1.chunk.css",
+    "static/js/main.d8c11bbc.chunk.js"
+  ]
+}
