@@ -3,7 +3,7 @@ footer {
     color: white;
     text-align: center;
     padding: 3px;
-    position: sticky;
+    position: relative;
     width: 100%;
     font-size: .7em;
     bottom: 0;
