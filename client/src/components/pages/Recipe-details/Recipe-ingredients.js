@@ -4,10 +4,12 @@ import DoughnutChart from './Doughnut-chart'
 
 import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter'
 
+import './Recipe-ingredients.css'
+
 
 const RecipeIngredients = ({image, ingredients, labels, nutrients, servings}) => {
     return (
-        <Row>
+        <Row className='details-ingredients'>
             <Col lg={6}>
                 {image && <img className='recipe-img' src={image.url} alt={image.alt} />}
                 
