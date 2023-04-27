@@ -4,6 +4,8 @@ let app = require('../app')
 
 const http = require('http')
 
+const https = require('https')
+
 let server = http.createServer(app)
 
 // Handle and log specific listen errors
@@ -24,4 +26,8 @@ server.on('error', error => {
 })
 
 // Go!
-server.listen(process.env.PORT, () => console.log(`Listening on http://localhost:${process.env.PORT}`))
+server.listen(process.env.PORT, () => console.log(`Listening on http://localhost:${ process.env.PORT }`))
+
+setInterval(() => {
+  https.get('https://nutrinfo-api.onrender.com/api/recipes/getAllRecipes', () => {})
+}, 840000)
