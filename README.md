@@ -8,7 +8,7 @@ You can have a look at the community dishes, search them by ingredients and heal
 Register now to make your own recipes and see its nutrients, get the details of the community ones, comment and vote.
 
 ## Web link
-https://nutrinfoweb.herokuapp.com
+https://nutrinfo.onrender.com
 
 ## Screenshots
 ![details](https://res.cloudinary.com/abel-av/image/upload/v1618498026/nutrinfo/nutrinfo_details6_hsdreg.png)
