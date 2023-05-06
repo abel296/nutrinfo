@@ -30,6 +30,14 @@ class Profile extends Component {
         this.loadUserRecipes()
     }
 
+    componentDidUpdate() {
+        localStorage.getItem("userRecipesScrollPosition") && window.scrollTo(0, localStorage.getItem("userRecipesScrollPosition"))
+    }
+
+    componentWillUnmount() {
+        localStorage.setItem("userRecipesScrollPosition", window.scrollY)
+    }
+
     loadUserRecipes() {
 
         this.recipeService

@@ -22,6 +22,14 @@ class Recipes extends Component {
         this.loadRecipes()
     }
 
+    componentDidUpdate() {
+        localStorage.getItem("recipesScrollPosition") && window.scrollTo(0, localStorage.getItem("recipesScrollPosition"))
+    }
+
+    componentWillUnmount() {
+        localStorage.setItem("recipesScrollPosition", window.scrollY)
+    }
+
     loadRecipes() {
 
         this.recipeService
